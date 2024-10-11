@@ -16,11 +16,9 @@ library(broom)
 
 ## 2. Data
 
-Text goes here.
-
 ```{r}
 lobsters <- read_csv(file = "../data/lobsters.csv")
-lobsters
+glimpse(lobsters)
 ```
 
 ## 3. Data analysis plan
