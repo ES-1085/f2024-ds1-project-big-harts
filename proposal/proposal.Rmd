@@ -8,7 +8,6 @@ output: html_document
 library(tidyverse)
 library(broom)
 
-
 ```
 
 ## 1. Introduction
@@ -20,7 +19,8 @@ library(broom)
 Text goes here.
 
 ```{r}
-# lobsters <- read.csv(file =  )
+lobsters <- read_csv(file = "../data/lobsters.csv")
+lobsters
 ```
 
 ## 3. Data analysis plan
