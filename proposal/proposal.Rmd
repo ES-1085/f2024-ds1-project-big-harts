@@ -20,7 +20,7 @@ library(broom)
 Text goes here.
 
 ```{r}
-# Code goes here
+# lobsters <- read.csv(file =  )
 ```
 
 ## 3. Data analysis plan
