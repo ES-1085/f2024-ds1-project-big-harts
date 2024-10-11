@@ -1,6 +1,6 @@
 ---
-title: "Project proposal"
-author: "Team name"
+title: "Hart Island Lobster Traps"
+author: "Big Harts"
 output: html_document
 ---
 
@@ -11,7 +11,7 @@ library(broom)
 
 ## 1. Introduction
 
-Text goes here. Refer to the Markdown Quick Reference: Help -> Markdown Quick Reference. 
+ 
 
 ## 2. Data
 
