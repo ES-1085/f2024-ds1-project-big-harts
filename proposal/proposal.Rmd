@@ -13,7 +13,7 @@ library(broom)
 
 ## 1. Introduction
 
- Bla Bla Bla. 
+ Bla Bla Bla. Bla Bla
 
 ## 2. Data
 
