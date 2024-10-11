@@ -12,7 +12,12 @@ library(broom)
 
 ## 1. Introduction
 
- Bla Bla Bla. Bla Bla
+This data set was provided from the Rozalia Project, a non-profit that works on collection, research, and education of marine debis around the Gulf of Maine. Most of what debris is collected and cataloged is tied to the fishing industries in the region.
+
+This data was collected on August 24th, 2023 on Hart Island, a small island just
+Southwest of Port Clyde, ME. Volunteers worked to  removing lost, abandoned and derelict fishing gear and other coastal debris. For each lobster trap found, the trap tags were pulled and recorded including: tag count, data collected (MDY), number of tags in bundle, state, zone, area, tag ID, trap batch number, tag color, shoreline where found, GPS (lat/long), tag year, additional info on tag, named individual, and home port. 
+
+With this data we aim to explore the relationship between abandoned lobster traps and the individuals who deployed them and the lifespan of traps. 
 
 ## 2. Data
 
