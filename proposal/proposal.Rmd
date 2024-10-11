@@ -7,11 +7,13 @@ output: html_document
 ```{r load-packages, message = FALSE}
 library(tidyverse)
 library(broom)
+
+
 ```
 
 ## 1. Introduction
 
- 
+ Bla Bla Bla. 
 
 ## 2. Data
 
