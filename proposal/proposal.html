@@ -378,14 +378,14 @@ traps.</p>
 <div id="data" class="section level2">
 <h2>2. Data</h2>
 <p>Text goes here.</p>
-<pre class="r"><code>lobsters &lt;- read_csv(file = &quot;../data/lobsters.csv&quot;)</code></pre>
+<pre class="r"><code>lobsters &lt;- read_csv(file = &quot;../data/lobsters.csv&quot;, n_max = 224)</code></pre>
 <pre><code>## New names:
-## Rows: 227 Columns: 28
+## Rows: 224 Columns: 28
 ## ── Column specification
 ## ──────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
-## (12): DATE COLLECTED (m-d-y), STATE, Z: ZONE, AREA, TAG ID NUMBER, TRAP ... dbl
-## (4): TAG COUNT, # TAGS IN BUNDLE, GPS COORDINATES-Lat, TAGYEAR lgl (12): ...17,
-## ...18, ...19, ...20, ...21, ...22, ...23, ...24, ...25, ......
+## (11): DATE COLLECTED (m-d-y), STATE, Z: ZONE, AREA, TAG ID NUMBER, TRAP ... dbl
+## (5): TAG COUNT, # TAGS IN BUNDLE, GPS COORDINATES-Lat, GPS COORD-Long, ... lgl
+## (12): ...17, ...18, ...19, ...20, ...21, ...22, ...23, ...24, ...25, ......
 ## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
 ## Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ## • `` -&gt; `...17`
@@ -400,7 +400,7 @@ traps.</p>
 ## • `` -&gt; `...26`
 ## • `` -&gt; `...27`</code></pre>
 <pre class="r"><code>lobsters</code></pre>
-<pre><code>## # A tibble: 227 × 28
+<pre><code>## # A tibble: 224 × 28
 ##    `TAG COUNT` `DATE COLLECTED (m-d-y)` `# TAGS IN BUNDLE` STATE `Z: ZONE` AREA 
 ##          &lt;dbl&gt; &lt;chr&gt;                                 &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;
 ##  1          90 8/24/2023                                 1 ME    D         1    
@@ -413,10 +413,10 @@ traps.</p>
 ##  8         111 8/24/2023                                 5 ME    D         1    
 ##  9         201 8/24/2023                                 9 ME    D         1    
 ## 10         123 8/24/2023                                 1 ME    D         1    
-## # ℹ 217 more rows
+## # ℹ 214 more rows
 ## # ℹ 22 more variables: `TAG ID NUMBER` &lt;chr&gt;, `TRAP BATCH NUMBER` &lt;chr&gt;,
 ## #   `TAG COLOUR` &lt;chr&gt;, `SHORELINE WHERE FOUND` &lt;chr&gt;,
-## #   `GPS COORDINATES-Lat` &lt;dbl&gt;, `GPS COORD-Long` &lt;chr&gt;, TAGYEAR &lt;dbl&gt;,
+## #   `GPS COORDINATES-Lat` &lt;dbl&gt;, `GPS COORD-Long` &lt;dbl&gt;, TAGYEAR &lt;dbl&gt;,
 ## #   `ADDITIONAL INFO ON TAG` &lt;chr&gt;, `NAMED INDIVIDUAL` &lt;chr&gt;,
 ## #   `HOME PORT` &lt;chr&gt;, ...17 &lt;lgl&gt;, ...18 &lt;lgl&gt;, ...19 &lt;lgl&gt;, ...20 &lt;lgl&gt;,
 ## #   ...21 &lt;lgl&gt;, ...22 &lt;lgl&gt;, ...23 &lt;lgl&gt;, ...24 &lt;lgl&gt;, ...25 &lt;lgl&gt;, …</code></pre>
