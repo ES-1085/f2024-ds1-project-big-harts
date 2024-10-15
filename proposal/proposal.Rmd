@@ -31,7 +31,9 @@ glimpse(lobsters)
 1) we hope to use tag year and color, # of tags in bundle, named individual, and tag ID number
 2) we will try to find data showing the # of traps per individual so as to better understand the ratio of lost traps on Hart island to total # of traps
 
+3) the prelim_vis_testing graph below helps show the number of lost traps per individual, and the age_traps graph shows the correlation between age of traps and number of traps
 
+4) we hope to build on the graphs below to better show relationships between traps and individuals and show the range of trap age. 
 
 ```{r prelim_vis_testing}
 ggplot(data = lobsters, mapping = aes(x = `NAMED INDIVIDUAL`)) +
@@ -39,9 +41,7 @@ ggplot(data = lobsters, mapping = aes(x = `NAMED INDIVIDUAL`)) +
 
 
 ```
-```{r}
-lobsters %>% 
-  filter('# TAGS IN BUNDLE'!= 
+```{r age_traps}
 ggplot(data = lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
   geom_bar() 
 
