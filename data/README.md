@@ -6,12 +6,6 @@ Then, include codebooks (variables, and their descriptions) for your data file(s
 
 ## name of data file
 
-<<<<<<< HEAD
--   `variable1`: Description of variable 1
--   `variable2`: Description of variable 2
--   `variable3`: Description of variable 3
--   ...
-=======
 - `Tag Count`: Description of variable 1
 - `Date Collected (m-d-y)`: Description of variable 2
 - `# Tags in Bundle`: Description of variable 3
@@ -28,5 +22,3 @@ Then, include codebooks (variables, and their descriptions) for your data file(s
 - `Additional Info on Tag`:
 - `Named Individual`
 - `Home Port`:
-
->>>>>>> a6b769549c3b8df66f44abf738b0f31923ca6f37
