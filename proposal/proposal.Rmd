@@ -30,9 +30,20 @@ glimpse(lobsters)
 
 Text goes here.
 
+3) the prelim_vis_testing graph below helps show the number of lost traps per individual, and the age_traps graph shows the correlation between age of traps and number of traps
 
 ```{r}
-# Code goes here
+4) we hope to build on the graphs below to better show relationships between traps and individuals and show the range of trap age. 
+
+```{r prelim_vis_testing}
+ggplot(data = lobsters, mapping = aes(x = `NAMED INDIVIDUAL`)) +
+  geom_bar() 
+
+
+```
+```{r age_traps}
+ggplot(data = lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
+  geom_bar()
 ```
 
 
