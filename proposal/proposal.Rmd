@@ -28,9 +28,9 @@ glimpse(lobsters)
 
 ## 3. Data analysis plan
 
-1) We hope to use tag year and color, # of tags in bundle, named individual, and tag ID number.
+1) We hope to use tag year and color, # of tags in bundle, named individual, tag ID number, and home port.
 
-2) We will try to find data showing the # of traps per individual so as to better understand the ratio of lost traps on Hart island to total # of traps. 
+2) We will try to find data showing the # of traps per individual so as to better understand the ratio of lost traps on Hart island to total # of traps. In addition, we hope to compare the home port of the traps to the number of tags in each bundle to see if there's a link between the longevity of a trap and the port it came from. 
 
 3) The prelim_vis_testing graph below helps show the number of lost traps per individual, and the age_traps graph shows the correlation between age of traps and number of traps.
 
