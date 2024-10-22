@@ -1,7 +1,7 @@
 ---
 title: "Hart Island Lobster Traps"
 author: "Big Harts"
-output: html_document
+output: github_document
 ---
 
 ```{r load-packages, message = FALSE}
@@ -12,7 +12,7 @@ library(broom)
 
 ## 1. Introduction
 
-This data set was provided from the Rozalia Project, a non-profit that works on collection, research, and education of marine debis around the Gulf of Maine. Most of what debris is collected and cataloged is tied to the fishing industries in the region.
+This data set was provided from the Rozalia Project, a non-profit that works on collection, research, and education of marine debis around the Gulf of Maine. Most of what debris is collected and cataloged can be tied to the fishing industries in the region.
 
 This data was collected on August 24th, 2023 on Hart Island, a small island just
 Southwest of Port Clyde, ME. Volunteers worked to  removing lost, abandoned and derelict fishing gear and other coastal debris. For each lobster trap found, the trap tags were pulled and recorded including: tag count, data collected (MDY), number of tags in bundle, state, zone, area, tag ID, trap batch number, tag color, shoreline where found, GPS (lat/long), tag year, additional info on tag, named individual, and home port. 
@@ -28,12 +28,15 @@ glimpse(lobsters)
 
 ## 3. Data analysis plan
 
-1) we hope to use tag year and color, # of tags in bundle, named individual, and tag ID number
-2) we will try to find data showing the # of traps per individual so as to better understand the ratio of lost traps on Hart island to total # of traps
+1) We hope to use tag year and color, # of tags in bundle, named individual, tag ID number, and homeport.
 
-3) the prelim_vis_testing graph below helps show the number of lost traps per individual, and the age_traps graph shows the correlation between age of traps and number of traps
+2) We will try to find data showing the # of traps per individual so as to better understand the ratio of lost traps on Hart island to total # of traps. In addition, we hope to compare the home port of the traps to the number of tags in each bundle to see if there's a link between the longevity of a trap and the port it came from. 
 
-4) we hope to build on the graphs below to better show relationships between traps and individuals and show the range of trap age. 
+3) The prelim_vis_testing graph below helps show the number of lost traps per individual, and the age_traps graph shows the correlation between age of traps and number of traps.
+
+4) We hope to build on the graphs below to better show relationships between traps and individuals and show the range of trap age. 
+
+5) We are also considering looking to see if there is a correlation between a trap's homeport and the number of tags in the bundle (which represents how many )
 
 ```{r prelim_vis_testing}
 ggplot(data = lobsters, mapping = aes(x = `NAMED INDIVIDUAL`)) +
@@ -41,6 +44,7 @@ ggplot(data = lobsters, mapping = aes(x = `NAMED INDIVIDUAL`)) +
 
 
 ```
+
 ```{r age_traps}
 ggplot(data = lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
   geom_bar() +
