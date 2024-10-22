@@ -47,7 +47,9 @@ ggplot(data = lobsters, mapping = aes(x = `NAMED INDIVIDUAL`)) +
 
 ```{r age_traps}
 ggplot(data = lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
-  geom_bar()
+  geom_bar() +
+  xlim(0, 20)
+
 ```
 
 

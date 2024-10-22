@@ -96,7 +96,9 @@ glimpse(lobsters)
 
 2)  We will try to find data showing the \# of traps per individual so
     as to better understand the ratio of lost traps on Hart island to
-    total \# of traps.
+    total \# of traps. In addition, we hope to compare the home port of
+    the traps to the number of tags in each bundle to see if there’s a
+    link between the longevity of a trap and the port it came from.
 
 3)  The prelim_vis_testing graph below helps show the number of lost
     traps per individual, and the age_traps graph shows the correlation
@@ -118,10 +120,11 @@ ggplot(data = lobsters, mapping = aes(x = `NAMED INDIVIDUAL`)) +
 
 ``` r
 ggplot(data = lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
-  geom_bar()
+  geom_bar() +
+  xlim(0, 20)
 ```
 
-    ## Warning: Removed 2 rows containing non-finite outside the scale range
+    ## Warning: Removed 4 rows containing non-finite outside the scale range
     ## (`stat_count()`).
 
 ![](proposal_files/figure-gfm/age_traps-1.png)<!-- -->
