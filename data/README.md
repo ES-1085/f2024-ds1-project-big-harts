@@ -20,5 +20,6 @@ Then, include codebooks (variables, and their descriptions) for your data file(s
 - `GPS Coord-Long`: Longitude of the location where the trap was found
 - `Tagyear`: Latest year of licence recorded on each trap   
 - `Additional Info on Tag`: miscellaneous info
-- `Named Individual` Name of individual, licence type, and home port
-- `Home Port`: Port where individual fishes out of
+
+Observations: 227
+Variables:15
