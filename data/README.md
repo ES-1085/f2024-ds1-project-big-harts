@@ -22,3 +22,6 @@ Then, include codebooks (variables, and their descriptions) for your data file(s
 - `Additional Info on Tag`: miscellaneous info
 - `Named Individual` name of individual, licence type, and home port 
 - `Home Port`: port where individual fishes out of
+
+Observations: 227
+Variables:15
