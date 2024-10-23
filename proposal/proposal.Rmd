@@ -48,8 +48,8 @@ glimpse(true_lobsters)
 
 ```{r prelim_vis_testing}
 ggplot(data = true_lobsters, mapping = aes(x = `NAMED INDIVIDUAL`)) +
-  geom_bar() 
-
+  geom_bar() +
+theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ```
 

@@ -155,7 +155,8 @@ glimpse(true_lobsters)
 
 ``` r
 ggplot(data = true_lobsters, mapping = aes(x = `NAMED INDIVIDUAL`)) +
-  geom_bar() 
+  geom_bar() +
+theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
 ![](proposal_files/figure-gfm/prelim_vis_testing-1.png)<!-- -->
