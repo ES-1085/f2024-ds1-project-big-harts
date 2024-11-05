@@ -172,6 +172,17 @@ ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
 
 ![](proposal_files/figure-gfm/age_traps-1.png)<!-- -->
 
+``` r
+ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
+  geom_bar() +
+  labs(x = "Age of Traps (Years)", y = "Number of Traps",
+  title = "Age of Traps Collected on Hart Island") +
+  theme_linedraw() +
+  scale_x_continuous(breaks = seq(0, 10, by = 1))
+```
+
+![](proposal_files/figure-gfm/2%20age_graph-1.png)<!-- -->
+
 ## 4. Data Ethics Review
 
 The data ethics review section will be introduced in a separate class
