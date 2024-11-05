@@ -58,7 +58,7 @@ ggsave("example-starwars-wide.png", width = 6, height = 4)
 
 ### Plot 1: _________
 
-```{r traps_ages}
+```{r traps_ages_1}
 ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
   geom_bar() +
   labs(x = "Age of Traps (Years)", y = "Number of Traps",
@@ -68,6 +68,9 @@ ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
 
 ggsave("hart-traps-ages.png", width = 4, height = 4)
 ```
+
+```{r traps_ages_2}
+
 
 #### Data cleanup steps specific to plot 1
 
