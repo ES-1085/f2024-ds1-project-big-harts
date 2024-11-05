@@ -163,7 +163,11 @@ theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ``` r
 ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
-  geom_bar()
+  geom_bar() +
+  labs(x = "Age of Traps (Years)", y = "Number of Traps",
+  title = "Age of Traps Collected on Hart Island") +
+  theme_linedraw() +
+  scale_x_reverse(breaks = seq(10, 0, by = -1))
 ```
 
 ![](proposal_files/figure-gfm/age_traps-1.png)<!-- -->
