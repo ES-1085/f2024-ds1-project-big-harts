@@ -15,7 +15,16 @@ library(broom)
 
 ### Step 1: _________
 
-```{r}
+```{r lobsters}
+lobsters <- read_csv(file = "../data/lobsters.csv")
+glimpse(lobsters)
+```
+
+Remove unnecessary text rows at bottom of dataset:
+```{r true_lobsters}
+true_lobsters <- head(lobsters, -4)
+glimpse(true_lobsters)
+```
 
 ```
 
@@ -48,6 +57,17 @@ ggsave("example-starwars-wide.png", width = 6, height = 4)
 
 
 ### Plot 1: _________
+
+```{r traps_ages}
+ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
+  geom_bar() +
+  labs(x = "Age of Traps (Years)", y = "Number of Traps",
+  title = "Age of Traps Collected on Hart Island") +
+  theme_linedraw() +
+  scale_x_reverse(breaks = seq(10, 0, by = -1))
+
+ggsave("hart-traps-ages.png", width = 4, height = 4)
+```
 
 #### Data cleanup steps specific to plot 1
 
