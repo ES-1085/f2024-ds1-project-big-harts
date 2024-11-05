@@ -154,10 +154,25 @@ ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
   scale_x_reverse(breaks = seq(10, 0, by = -1))
 ```
 
-![](memo_files/figure-gfm/traps_ages-1.png)<!-- -->
+![](memo_files/figure-gfm/traps_ages_1-1.png)<!-- -->
 
 ``` r
 ggsave("hart-traps-ages.png", width = 4, height = 4)
+```
+
+``` r
+ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
+  geom_bar() +
+  labs(x = "Age of Traps (Years)", y = "Number of Traps",
+  title = "Age of Traps Collected on Hart Island") +
+  theme_linedraw() +
+  scale_x_continuous(breaks = seq(0, 10, by = 1))
+```
+
+![](memo_files/figure-gfm/2_age_graph-1.png)<!-- -->
+
+``` r
+ggsave("hart-traps-ages-2.png", width = 4, height = 4)
 ```
 
 #### Data cleanup steps specific to plot 1
