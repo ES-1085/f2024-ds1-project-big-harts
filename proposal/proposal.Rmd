@@ -19,8 +19,6 @@ Southwest of Port Clyde, ME. Volunteers worked to remove lost, abandoned and der
 
 With this data we aim to explore the relationship between abandoned lobster traps and the individuals who deployed them and the lifespan of traps. We hope that this data can be added to a more substantial dataset including more islands across the Gulf of Maine as more are surveyed. 
 
-
-
 ## 2. Data
 
 ```{r}
@@ -56,12 +54,17 @@ theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```{r age_traps}
 ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
   geom_bar() +
+<<<<<<< HEAD
+  xlim(0, 10)
+  scale_colour_viridis_d()
+=======
   labs(x = "Age of Traps (Years)", y = "Number of Traps",
   title = "Age of Traps Collected on Hart Island") +
   theme_linedraw() +
   scale_x_reverse(breaks = seq(10, 0, by = -1))
                     
                        
+>>>>>>> d738d12a068dd26f1936bb89eadceeac4e433909
 
 ```
 
