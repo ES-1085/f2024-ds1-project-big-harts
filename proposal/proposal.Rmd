@@ -26,6 +26,12 @@ lobsters <- read_csv(file = "../data/lobsters.csv")
 glimpse(lobsters)
 ```
 
+Remove unnecessary text rows at bottom of dataset:
+```{r}
+true_lobsters <- head(lobsters, -4)
+glimpse(true_lobsters)
+```
+
 ## 3. Data analysis plan
 
 1) We hope to use tag year and color, # of tags in bundle, named individual, tag ID number, and homeport.
@@ -39,17 +45,26 @@ glimpse(lobsters)
 5) We are also considering looking to see if there is a correlation between a trap's homeport and the number of tags in the bundle (which represents how many )
 
 ```{r prelim_vis_testing}
-ggplot(data = lobsters, mapping = aes(x = `NAMED INDIVIDUAL`)) +
-  geom_bar() 
-
+ggplot(data = true_lobsters, mapping = aes(x = `NAMED INDIVIDUAL`)) +
+  geom_bar() +
+theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ```
 
 ```{r age_traps}
-ggplot(data = lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
+ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
   geom_bar() +
+<<<<<<< HEAD
   xlim(0, 10)
   scale_colour_viridis_d()
+=======
+  labs(x = "Age of Traps (Years)", y = "Number of Traps",
+  title = "Age of Traps Collected on Hart Island") +
+  theme_linedraw() +
+  scale_x_reverse(breaks = seq(10, 0, by = -1))
+                    
+                       
+>>>>>>> d738d12a068dd26f1936bb89eadceeac4e433909
 
 ```
 
