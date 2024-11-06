@@ -162,6 +162,14 @@ theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ![](proposal_files/figure-gfm/prelim_vis_testing-1.png)<!-- -->
 
 ``` r
+# janitor::clean_names()
+person_table <- true_lobsters |>
+  distinct(`NAMED INDIVIDUAL`)
+
+write_csv(person_table, file = "../data/person_table.csv")
+```
+
+``` r
 ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
   geom_bar() +
   labs(x = "Age of Traps (Years)", y = "Number of Traps",
