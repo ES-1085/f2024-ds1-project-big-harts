@@ -1,6 +1,6 @@
 Hart Island Lobster Traps
 ================
-Big Harts!
+Big Harts
 
 ``` r
 library(tidyverse)

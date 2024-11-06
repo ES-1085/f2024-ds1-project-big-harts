@@ -1,6 +1,6 @@
 ---
 title: "Hart Island Lobster Traps"
-author: "Big Harts!"
+author: "Big Harts"
 output: github_document
 ---
 
