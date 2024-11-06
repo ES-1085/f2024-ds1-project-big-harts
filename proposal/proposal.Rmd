@@ -72,6 +72,7 @@ ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
                   
 
 ```
+
 ```{r 2 age_graph}
 ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
   geom_bar() +
