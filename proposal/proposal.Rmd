@@ -7,7 +7,9 @@ output: github_document
 ```{r load-packages, message = FALSE}
 library(tidyverse)
 library(broom)
-
+library(leaflet)
+library(sf)
+library(dplyr)
 ```
 
 ## 1. Introduction

@@ -5,6 +5,9 @@ Big Harts!
 ``` r
 library(tidyverse)
 library(broom)
+library(leaflet)
+library(sf)
+library(dplyr)
 ```
 
 ## 1. Introduction
