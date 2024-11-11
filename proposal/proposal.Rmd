@@ -103,11 +103,11 @@ homeport_coords <- true_lobsters |>
 The data ethics review section will be introduced in a separate class and is not part of the original proposal deadline.
 
 
-```{r}
+
 leaflet(data = lobsters) %>%
   addProviderTiles(providers$Esri.WorldImagery) %>%
   setView(lng = , 
           lat = , 
-          zoom = 5)
+          zoom = 10)
 ```
 

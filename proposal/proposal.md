@@ -178,7 +178,7 @@ ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
 ``` r
 ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
   geom_bar() +
-  labs(x = "Age of Traps (Years)", y = "Number of Traps",
+  labs(x = "Age of Traps (Number of Tags in Bundle)", y = "Number of Traps",
   title = "Age of Traps Collected on Hart Island") +
   theme_linedraw() +
   scale_x_continuous(breaks = seq(0, 10, by = 1))
@@ -214,3 +214,7 @@ homeport_coords <- true_lobsters |>
 
 The data ethics review section will be introduced in a separate class
 and is not part of the original proposal deadline.
+
+leaflet(data = lobsters) %\>%
+addProviderTiles(providers\$Esri.WorldImagery) %\>% setView(lng = , lat
+= , zoom = 10) \`\`\`
