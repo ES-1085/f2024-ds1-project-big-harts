@@ -1,13 +1,15 @@
 ---
 title: "Hart Island Lobster Traps"
-author: "Big Harts"
+author: "Big Harts!"
 output: github_document
 ---
 
 ```{r load-packages, message = FALSE}
 library(tidyverse)
 library(broom)
-
+library(leaflet)
+library(sf)
+library(dplyr)
 ```
 
 ## 1. Introduction
@@ -51,16 +53,6 @@ theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ```
 
-```{r}
-# janitor::clean_names()
-person_table <- true_lobsters |>
-  distinct(`NAMED INDIVIDUAL`)
-
-write_csv(person_table, file = "../data/person_table.csv")
-
-```
-
-
 ```{r age_traps}
 
 ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
@@ -82,7 +74,29 @@ ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
   scale_x_continuous(breaks = seq(0, 10, by = 1))
 ```
 
-
+```{r homeport_map}
+homeport_coords <- true_lobsters |>
+  mutate(
+    "LONGITUDE" = case_when(
+     `HOME PORT` == "PORT CLYDE" ~ -69.3,
+     `HOME PORT` == "WINTER HBR" ~ -68.1,
+     `HOME PORT` == "ROCKLAND" ~ -69.1,
+     `HOME PORT` == "TENANTS HBR" ~ -69.2,
+     `HOME PORT` == "CUSHING" ~ -69.3,
+     `HOME PORT` == "OWLS HEAD" ~ -69.1,
+     `HOME PORT` == "ST GEORGE" ~ -69.2
+    )) |>
+  mutate(
+    "LATITUDE" = case_when(
+     `HOME PORT` == "PORT CLYDE" ~ 43.9,
+     `HOME PORT` == "WINTER HBR" ~ 44.4,
+     `HOME PORT` == "ROCKLAND" ~ 44.1,
+     `HOME PORT` == "TENANTS HBR" ~ 44.0,
+     `HOME PORT` == "CUSHING" ~ 44.0,
+     `HOME PORT` == "OWLS HEAD" ~ 44.1,
+     `HOME PORT` == "ST GEORGE" ~ 44.0
+    ))
+```
 
 ## 4. Data Ethics Review
 

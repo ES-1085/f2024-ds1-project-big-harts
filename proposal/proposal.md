@@ -1,10 +1,13 @@
 Hart Island Lobster Traps
 ================
-Big Harts
+Big Harts!
 
 ``` r
 library(tidyverse)
 library(broom)
+library(leaflet)
+library(sf)
+library(dplyr)
 ```
 
 ## 1. Introduction
@@ -162,14 +165,6 @@ theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ![](proposal_files/figure-gfm/prelim_vis_testing-1.png)<!-- -->
 
 ``` r
-# janitor::clean_names()
-person_table <- true_lobsters |>
-  distinct(`NAMED INDIVIDUAL`)
-
-write_csv(person_table, file = "../data/person_table.csv")
-```
-
-``` r
 ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
   geom_bar() +
   labs(x = "Age of Traps (Years)", y = "Number of Traps",
@@ -190,6 +185,30 @@ ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
 ```
 
 ![](proposal_files/figure-gfm/2%20age_graph-1.png)<!-- -->
+
+``` r
+homeport_coords <- true_lobsters |>
+  mutate(
+    "LONGITUDE" = case_when(
+     `HOME PORT` == "PORT CLYDE" ~ -69.3,
+     `HOME PORT` == "WINTER HBR" ~ -68.1,
+     `HOME PORT` == "ROCKLAND" ~ -69.1,
+     `HOME PORT` == "TENANTS HBR" ~ -69.2,
+     `HOME PORT` == "CUSHING" ~ -69.3,
+     `HOME PORT` == "OWLS HEAD" ~ -69.1,
+     `HOME PORT` == "ST GEORGE" ~ -69.2
+    )) |>
+  mutate(
+    "LATITUDE" = case_when(
+     `HOME PORT` == "PORT CLYDE" ~ 43.9,
+     `HOME PORT` == "WINTER HBR" ~ 44.4,
+     `HOME PORT` == "ROCKLAND" ~ 44.1,
+     `HOME PORT` == "TENANTS HBR" ~ 44.0,
+     `HOME PORT` == "CUSHING" ~ 44.0,
+     `HOME PORT` == "OWLS HEAD" ~ 44.1,
+     `HOME PORT` == "ST GEORGE" ~ 44.0
+    ))
+```
 
 ## 4. Data Ethics Review
 
