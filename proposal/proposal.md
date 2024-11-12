@@ -178,7 +178,7 @@ ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
 ``` r
 ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
   geom_bar() +
-  labs(x = "Age of Traps (Years)", y = "Number of Traps",
+  labs(x = "Age of Traps (Number of Tags in Bundle)", y = "Number of Traps",
   title = "Age of Traps Collected on Hart Island") +
   theme_linedraw() +
   scale_x_continuous(breaks = seq(0, 10, by = 1))
@@ -187,30 +187,86 @@ ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
 ![](proposal_files/figure-gfm/2%20age_graph-1.png)<!-- -->
 
 ``` r
+ggplot(data = true_lobsters, mapping = aes(x = `TAG ID NUMBER`)) +
+  geom_bar() +
+  labs(x = "Tag ID Number", y = "Number of Traps",
+  title = "Trap ID's Found on Hart Island") +
+  theme_linedraw() +
+  theme(axis.text.x = element_text(angle=45, hjust = 1))
+```
+
+![](proposal_files/figure-gfm/tag-ID-1.png)<!-- -->
+
+``` r
+#ggplot(data = true_lobsters, mapping = aes(x = `HOME PORT`)) +
+ # geom_bar() +
+  #labs(x = "Home Port of Trap", y = "Number of Traps",
+  #title = "Home Port of Traps Found on Hart Island") +
+  #theme_linedraw() +
+```
+
+``` r
 homeport_coords <- true_lobsters |>
   mutate(
-    "LONGITUDE" = case_when(
-     `HOME PORT` == "PORT CLYDE" ~ -69.3,
-     `HOME PORT` == "WINTER HBR" ~ -68.1,
-     `HOME PORT` == "ROCKLAND" ~ -69.1,
-     `HOME PORT` == "TENANTS HBR" ~ -69.2,
-     `HOME PORT` == "CUSHING" ~ -69.3,
-     `HOME PORT` == "OWLS HEAD" ~ -69.1,
-     `HOME PORT` == "ST GEORGE" ~ -69.2
+    "HOMEPORT LAT" = case_when(
+     `HOME PORT` == "PORT CLYDE" ~ 43.9271,
+     `HOME PORT` == "WINTER HBR" ~ 44.3948,
+     `HOME PORT` == "ROCKLAND" ~ 44.1037,
+     `HOME PORT` == "TENANTS HBR" ~ 43.9682,
+     `HOME PORT` == "CUSHING" ~ 44.0138,
+     `HOME PORT` == "OWLS HEAD" ~ 44.0823,
+     `HOME PORT` == "ST GEORGE" ~ 44.0165
     )) |>
   mutate(
-    "LATITUDE" = case_when(
-     `HOME PORT` == "PORT CLYDE" ~ 43.9,
-     `HOME PORT` == "WINTER HBR" ~ 44.4,
-     `HOME PORT` == "ROCKLAND" ~ 44.1,
-     `HOME PORT` == "TENANTS HBR" ~ 44.0,
-     `HOME PORT` == "CUSHING" ~ 44.0,
-     `HOME PORT` == "OWLS HEAD" ~ 44.1,
-     `HOME PORT` == "ST GEORGE" ~ 44.0
+    "HOMEPORT LONG" = case_when(
+     `HOME PORT` == "PORT CLYDE" ~ -69.2583,
+     `HOME PORT` == "WINTER HBR" ~ -68.0830,
+     `HOME PORT` == "ROCKLAND" ~ -69.1089,
+     `HOME PORT` == "TENANTS HBR" ~ -69.2088,
+     `HOME PORT` == "CUSHING" ~ -69.2615,
+     `HOME PORT` == "OWLS HEAD" ~ -69.0573,
+     `HOME PORT` == "ST GEORGE" ~ -69.1989
     ))
+```
+
+``` r
+lobsters_anon <- homeport_coords |>   
+  mutate(
+    "INDIVIDUALS" = case_when(
+      `NAMED INDIVIDUAL` == "THOMAS YOUNG/LC2O/WINTER HBR" ~ "T.Y.",
+      `NAMED INDIVIDUAL` == "DOUGLAS ANDERSON/LC3/PORT CLYDE" ~ "D.A.",
+      `NAMED INDIVIDUAL` == "KEITH YORK/LC2/ROCKLAND" ~ "K.Y.",
+      `NAMED INDIVIDUAL` == "PETER HENDERSON/LNC/TENANTS HBR" ~ "P.H.",                      
+      `NAMED INDIVIDUAL` == "CHRISTOPHER ANDERSON/LC2/PORT CLYDE" ~ "C.A.",                  
+      `NAMED INDIVIDUAL` == "GARY LIBBY/LC2/PORT CLYDE" ~ "G.L.",                            
+      `NAMED INDIVIDUAL` == "CHRISTOPHER CHADWICK/LC3/PORT CLYDE" ~ "C.C.",
+      `NAMED INDIVIDUAL` == "DAVID TALOR/LC3/CUSHING" ~ "D.T.",
+      `NAMED INDIVIDUAL` == "ERICH CULVER/LC2/PORT CLYDE" ~ "E.C.",
+      `NAMED INDIVIDUAL` == "WHITNEY HUPPER/LC1/PORT CLYDE" ~ "W.H.",
+      `NAMED INDIVIDUAL` == "GREG MORRIS/LC3/PORT CLYDE" ~ "G.M.",
+      `NAMED INDIVIDUAL` == "JUSTIN THOMPSON/LC3/PORT CLYDE" ~ "J.T.",
+      `NAMED INDIVIDUAL` == "DANIEL MORRIS/LC2/PORT CLYDE" ~ "D.M.",
+      `NAMED INDIVIDUAL` == "DILLAN CUSHMAN/LC3/PORT CLYDE" ~ "D.C.",
+      `NAMED INDIVIDUAL` == "SHANE HATCH/LC3/OWLS HEAD" ~ "S.H.",
+      `NAMED INDIVIDUAL` == "WINSTON PEASE/LCO/PORT CLYDE" ~ "W.P.",
+      `NAMED INDIVIDUAL` == "CHARLES CHRISTENSEN/LC1/PORT CLYDE" ~ "C.C.",
+      `NAMED INDIVIDUAL` == "ANTHONY HOOPER/LC3/TENANTS HBR" ~ "A.H.",
+      `NAMED INDIVIDUAL` == "BRIAN YORK/LC2/PORT CLYDE" ~ "B.Y.",
+      `NAMED INDIVIDUAL` == "DYLAN LORD/STUDENT/ST GEORGE" ~ "D.L.",
+      `NAMED INDIVIDUAL` == "JADEN PETERSDORF/LC2/PORT CLYDE" ~ "J.P.",
+      `NAMED INDIVIDUAL` == "6691 IS LCS IN 2021; THESE TAGS ARE TOO OLD TO BE LCS" ~ "N/A",
+      `NAMED INDIVIDUAL` == "NOT IN 2021 DMR LICENSE LIST" ~ "N/A"
+    )) |>
+  select(-`NAMED INDIVIDUAL`, -c(17:27), -`MISCELLANEOUS`)
+
+write.csv(lobsters_anon, "../data/lobsters_anon.csv", row.names = FALSE)
 ```
 
 ## 4. Data Ethics Review
 
 The data ethics review section will be introduced in a separate class
 and is not part of the original proposal deadline.
+
+leaflet(data = lobsters) %\>%
+addProviderTiles(providers\$Esri.WorldImagery) %\>% setView(lng = , lat
+= , zoom = 10) \`\`\`
