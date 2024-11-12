@@ -257,7 +257,7 @@ lobsters_anon <- homeport_coords |>
       `NAMED INDIVIDUAL` == "6691 IS LCS IN 2021; THESE TAGS ARE TOO OLD TO BE LCS" ~ "N/A",
       `NAMED INDIVIDUAL` == "NOT IN 2021 DMR LICENSE LIST" ~ "N/A"
     )) |>
-  select(-`NAMED INDIVIDUAL`)
+  select(-`NAMED INDIVIDUAL`, -c(17:27), -`MISCELLANEOUS`)
 
 write.csv(lobsters_anon, "../data/lobsters_anon.csv", row.names = FALSE)
 ```
