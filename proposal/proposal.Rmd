@@ -160,7 +160,6 @@ The data ethics review section will be introduced in a separate class and is not
 
 
 ```{r}
-
 library(leaflet)
 
 # Define your locations
