@@ -145,8 +145,8 @@ lobsters_anon <- homeport_coords |>
       `NAMED INDIVIDUAL` == "JADEN PETERSDORF/LC2/PORT CLYDE" ~ "J.P.",
       `NAMED INDIVIDUAL` == "6691 IS LCS IN 2021; THESE TAGS ARE TOO OLD TO BE LCS" ~ "N/A",
       `NAMED INDIVIDUAL` == "NOT IN 2021 DMR LICENSE LIST" ~ "N/A"
-    )
-  )
+    )) |>
+  select(-`NAMED INDIVIDUAL`)
 ```
 
 ## 4. Data Ethics Review
