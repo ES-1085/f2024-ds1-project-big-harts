@@ -75,15 +75,19 @@ ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
 ```
 
 ```{r tag-ID}
+homeport_order <- true_lobsters %>%
+  count(`HOME PORT`) %>%
+  arrange(desc(n)) %>%
+  pull(`HOME PORT`)
 
+# Reorder `HOME PORT` based on total counts
+true_lobsters$`HOME PORT` <- factor(true_lobsters$`HOME PORT`, levels = homeport_order)
+
+# Create the bar chart
 ggplot(data = true_lobsters, mapping = aes(x = `TAG ID NUMBER`, fill = `HOME PORT`)) +
   geom_bar() +
   labs(x = "Tag ID Number", y = "Number of Traps",
-<<<<<<< HEAD
        title = "Trap ID's Found on Hart Island") +
-=======
-  title = "Trap ID's Found on Hart Island") 
->>>>>>> 9c5b8381c37bfd3cce6802cac32083dd85005638
   theme_linedraw() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_viridis_d(option = "D", name = "Home Port")
