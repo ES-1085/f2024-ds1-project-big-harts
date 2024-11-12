@@ -10,6 +10,9 @@ library(broom)
 library(leaflet)
 library(sf)
 library(dplyr)
+library(visdat)
+library(naniar)
+library(UpSetR)
 ```
 
 ## 1. Introduction
@@ -73,6 +76,7 @@ ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
   theme_linedraw() +
   scale_x_continuous(breaks = seq(0, 10, by = 1))
 ```
+
 ```{r tag-ID}
 
 ggplot(data = true_lobsters, mapping = aes(x = `TAG ID NUMBER`)) +
@@ -83,12 +87,32 @@ ggplot(data = true_lobsters, mapping = aes(x = `TAG ID NUMBER`)) +
   theme(axis.text.x = element_text(angle=45, hjust = 1))
 
 ```
+
 ```{r home-port}
+<<<<<<< HEAD
+
+<<<<<<< HEAD
+ggplot(lobsters, aes(x = "HOME PORT", y = n, fill = `HOME PORT`)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start = 0) +
+  labs(title = "Distribution of Lobster Traps by Home Port") +
+  theme_void()
+=======
+#ggplot(data = true_lobsters, mapping = aes(x = `HOME PORT`)) +
+ # geom_bar() +
+  #labs(x = "Home Port of Trap", y = "Number of Traps",
+  #title = "Home Port of Traps Found on Hart Island") +
+  #theme_linedraw() +
+ 
+>>>>>>> 23bf53fd5405b9a9a38014f1a015b3d9403632ad
+
+=======
 ggplot(data = true_lobsters, mapping = aes(x = `HOME PORT`)) +
   geom_bar() +
   labs(x = "Home Port of Trap", y = "Number of Traps",
   title = "Home Port of Traps Found on Hart Island") +
   theme_linedraw()
+>>>>>>> de58266c963aed12e5b8098c4dbf8f78a15b3d1f
 ```
 
 ```{r homeport_coords}
@@ -115,6 +139,14 @@ homeport_coords <- true_lobsters |>
     ))
 ```
 
+<<<<<<< HEAD
+```{r missing-data}
+
+true_lobsters_2 <- true_lobsters[, -c(17:27)]
+
+vis_miss(true_lobsters_2)
+
+=======
 ```{r anon_data}
 lobsters_anon <- homeport_coords |>   
   mutate(
@@ -146,6 +178,7 @@ lobsters_anon <- homeport_coords |>
   select(-`NAMED INDIVIDUAL`, -c(17:27), -`MISCELLANEOUS`)
 
 write.csv(lobsters_anon, "../data/lobsters_anon.csv", row.names = FALSE)
+>>>>>>> 23bf53fd5405b9a9a38014f1a015b3d9403632ad
 ```
 
 ## 4. Data Ethics Review
