@@ -147,6 +147,8 @@ lobsters_anon <- homeport_coords |>
       `NAMED INDIVIDUAL` == "NOT IN 2021 DMR LICENSE LIST" ~ "N/A"
     )) |>
   select(-`NAMED INDIVIDUAL`)
+
+write.csv(lobsters_anon, "../data/lobsters_anon.csv", row.names = FALSE)
 ```
 
 ## 4. Data Ethics Review
