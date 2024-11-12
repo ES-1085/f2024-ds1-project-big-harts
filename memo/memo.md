@@ -123,7 +123,7 @@ Add in coordinates to each homeport:
 ``` r
 homeport_coords <- true_lobsters |>
   mutate(
-    "LATITUDE" = case_when(
+    "HOMEPORT LAT" = case_when(
      `HOME PORT` == "PORT CLYDE" ~ 43.9271,
      `HOME PORT` == "WINTER HBR" ~ 44.3948,
      `HOME PORT` == "ROCKLAND" ~ 44.1037,
@@ -133,7 +133,7 @@ homeport_coords <- true_lobsters |>
      `HOME PORT` == "ST GEORGE" ~ 44.0165
     )) |>
   mutate(
-    "LONGITUDE" = case_when(
+    "HOMEPORT LONG" = case_when(
      `HOME PORT` == "PORT CLYDE" ~ -69.2583,
      `HOME PORT` == "WINTER HBR" ~ -68.0830,
      `HOME PORT` == "ROCKLAND" ~ -69.1089,
