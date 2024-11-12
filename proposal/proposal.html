@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Big Harts!" />
+<meta name="author" content="Big Harts" />
 
 
 <title>Hart Island Lobster Traps</title>
@@ -4411,7 +4411,7 @@ display: none;
 
 
 <h1 class="title toc-ignore">Hart Island Lobster Traps</h1>
-<h4 class="author">Big Harts!</h4>
+<h4 class="author">Big Harts</h4>
 
 </div>
 
@@ -4643,17 +4643,18 @@ and is not part of the original proposal deadline.</p>
 # Define your locations
 locations &lt;- data.frame(
   name = c(&quot;PORT CLYDE&quot;, &quot;WINTER HBR&quot;, &quot;ROCKLAND&quot;, &quot;TENANTS HBR&quot;, &quot;CUSHING&quot;, &quot;OWLS HEAD&quot;, &quot;ST GEORGE&quot;),
-  lat = c(43.9, 44.4, 44.1, 44.0, 44.0, 44.1, 44.0),
-  lon = c(-69.3, -68.1, -69.1, -69.2, -69.3, -69.1, -69.2)
+  lat = c(43.9271, 44.3948, 44.1037, 43.9682, 44.0138, 44.0823, 44.0165),
+  lon = c(-69.2583, -68.0830, -69.1089, -69.2088, -69.2615, -69.0573, -69.1989)
 )
 
-target_lat &lt;- 44.0
-target_lon &lt;- -69.3
+target_lat &lt;- 43.90538
+target_lon &lt;- -69.266659
 
 
 leaflet(data = locations) %&gt;%
   addTiles() %&gt;%
   addMarkers(~lon, ~lat, popup = ~name) %&gt;%
+<<<<<<< HEAD
   addMarkers(lng = -69.3, lat = 44.0, popup = &quot;HART ISLAND&quot;)</code></pre>
 <div class="leaflet html-widget html-fill-item" id="htmlwidget-57ebd3efb49c92a6ee51" style="width:672px;height:480px;"></div>
 <script type="application/json" data-for="htmlwidget-57ebd3efb49c92a6ee51">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[[43.9,44.4,44.1,44,44,44.1,44],[-69.3,-68.09999999999999,-69.09999999999999,-69.2,-69.3,-69.09999999999999,-69.2],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["PORT CLYDE","WINTER HBR","ROCKLAND","TENANTS HBR","CUSHING","OWLS HEAD","ST GEORGE"],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[44,-69.3,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"HART ISLAND",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[43.9,44.4],"lng":[-69.3,-68.09999999999999]}},"evals":[],"jsHooks":[]}</script>
@@ -4725,6 +4726,11 @@ leaflet() |&gt;
   )</code></pre>
 <div class="leaflet html-widget html-fill-item" id="htmlwidget-4cb0672783cc40e66aef" style="width:672px;height:480px;"></div>
 <script type="application/json" data-for="htmlwidget-4cb0672783cc40e66aef">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addPolylines","args":[[[[{"lng":[-69.2615,-69.266659],"lat":[44.0138,43.905379]}]],[[{"lng":[-69.0573,-69.266659],"lat":[44.0823,43.905379]}]],[[{"lng":[-69.25830000000001,-69.266659],"lat":[43.9271,43.905379]}]],[[{"lng":[-69.10890000000001,-69.266659],"lat":[44.1037,43.905379]}]],[[{"lng":[-69.19889999999999,-69.266659],"lat":[44.0165,43.905379]}]],[[{"lng":[-69.2088,-69.266659],"lat":[43.9682,43.905379]}]],[[{"lng":[-68.083,-69.266659],"lat":[44.3948,43.905379]}]]],null,null,{"interactive":true,"className":"","stroke":true,"color":"blue","weight":[0.07246376811594203,0.07246376811594203,10,0.3623188405797101,0.4347826086956522,0.7246376811594203,0.07246376811594203],"opacity":0.5,"fill":false,"fillColor":"blue","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,["CUSHING to Hart Island: 1 traps","OWLS HEAD to Hart Island: 1 traps","PORT CLYDE to Hart Island: 138 traps","ROCKLAND to Hart Island: 5 traps","ST GEORGE to Hart Island: 6 traps","TENANTS HBR to Hart Island: 10 traps","WINTER HBR to Hart Island: 1 traps"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[43.905379,-69.266659,5,null,null,{"interactive":true,"className":"","stroke":true,"color":"red","weight":5,"opacity":0.5,"fill":true,"fillColor":"red","fillOpacity":0.2},null,null,null,null,"Hart Island",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[43.905379,-69.266659,3,null,null,{"interactive":true,"className":"","stroke":true,"color":"gray","weight":5,"opacity":0.5,"fill":true,"fillColor":"gray","fillOpacity":0.2},null,null,null,null,"Unknown Homeport",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[43.905379,44.3948],"lng":[-69.266659,-68.083]}},"evals":[],"jsHooks":[]}</script>
+=======
+  addMarkers(lng = -69.266659, lat = 43.90538, popup = &quot;HART ISLAND&quot;)</code></pre>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-f5960fce5e7d2c569f19" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-f5960fce5e7d2c569f19">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[[43.9271,44.3948,44.1037,43.9682,44.0138,44.0823,44.0165],[-69.25830000000001,-68.083,-69.10890000000001,-69.2088,-69.2615,-69.0573,-69.19889999999999],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["PORT CLYDE","WINTER HBR","ROCKLAND","TENANTS HBR","CUSHING","OWLS HEAD","ST GEORGE"],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[43.90538,-69.266659,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"HART ISLAND",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[43.90538,44.3948],"lng":[-69.266659,-68.083]}},"evals":[],"jsHooks":[]}</script>
+>>>>>>> 2446d92c3c1518fbb4936d8aa5ee1ece451ff7d6
 </div>
 
 
