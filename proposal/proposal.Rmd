@@ -79,7 +79,11 @@ ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
 ggplot(data = true_lobsters, mapping = aes(x = `TAG ID NUMBER`, fill = `HOME PORT`)) +
   geom_bar() +
   labs(x = "Tag ID Number", y = "Number of Traps",
+<<<<<<< HEAD
        title = "Trap ID's Found on Hart Island") +
+=======
+  title = "Trap ID's Found on Hart Island") 
+>>>>>>> 9c5b8381c37bfd3cce6802cac32083dd85005638
   theme_linedraw() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_viridis_d(option = "D", name = "Home Port")
@@ -169,7 +173,6 @@ The data ethics review section will be introduced in a separate class and is not
 
 
 ```{r}
-
 library(leaflet)
 
 # Define your locations
@@ -198,7 +201,15 @@ homeport_counts <- lobsters_anon |>
     trap_count = n(),
     Longitude = first(`HOMEPORT LONG`),
     Latitude = first(`HOMEPORT LAT`)
-  )
+  ) 
+locations <- data.frame(
+  name = c("PORT CLYDE", "WINTER HBR", "ROCKLAND", "TENANTS HBR", "CUSHING", "OWLS HEAD", "ST GEORGE"),
+  lat = c(43.9271, 44.3948, 44.1037, 43.9682, 44.0138, 44.0823, 44.0165),
+  lon = c(-69.2583, -68.0830, -69.1089, -69.2088, -69.2615, -69.0573, -69.1989)
+)
+
+target_lat <- 43.90538
+target_lon <- -69.266659
 
 # Filter out rows where homeport coordinates are NA
 homeports_known <- homeport_counts |>
@@ -238,6 +249,7 @@ leaflet() |>
     data = lines,
     weight = homeports_known$weight, # Use precomputed weight
     color = "blue",
+    opacity = 20,
     label = ~paste(`HOME PORT`, "to Hart Island:", trap_count, "traps")
   ) |>
   # Add a marker for Hart Island
@@ -256,6 +268,8 @@ leaflet() |>
     color = "gray",
     radius = 3,
     label = "Unknown Homeport"
-  )
+  ) %>% 
+addMarkers(data = locations, lng = ~lon, lat = ~lat, popup = ~name) %>%
+  addMarkers(lng = -69.266659, lat = 43.90538, popup = "HART ISLAND")
 
 ```
