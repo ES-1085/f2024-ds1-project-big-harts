@@ -1,7 +1,7 @@
 ---
 title: "Hart Island Lobster Traps"
 author: "Big Harts!"
-output: github_document
+output: html_document
 ---
 
 ```{r load-packages, message = FALSE}
@@ -89,6 +89,7 @@ ggplot(data = true_lobsters, mapping = aes(x = `TAG ID NUMBER`)) +
 ```
 
 ```{r home-port}
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 ggplot(lobsters, aes(x = "HOME PORT", y = n, fill = `HOME PORT`)) +
@@ -105,6 +106,13 @@ ggplot(lobsters, aes(x = "HOME PORT", y = n, fill = `HOME PORT`)) +
  
 >>>>>>> 23bf53fd5405b9a9a38014f1a015b3d9403632ad
 
+=======
+ggplot(data = true_lobsters, mapping = aes(x = `HOME PORT`)) +
+  geom_bar() +
+  labs(x = "Home Port of Trap", y = "Number of Traps",
+  title = "Home Port of Traps Found on Hart Island") +
+  theme_linedraw()
+>>>>>>> de58266c963aed12e5b8098c4dbf8f78a15b3d1f
 ```
 
 ```{r homeport_coords}
@@ -179,10 +187,30 @@ The data ethics review section will be introduced in a separate class and is not
 
 
 
-leaflet(data = lobsters) %>%
-  addProviderTiles(providers$Esri.WorldImagery) %>%
-  setView(lng = , 
-          lat = , 
-          zoom = 10)
+```{r}
+
+library(leaflet)
+
+# Define your locations
+locations <- data.frame(
+  name = c("PORT CLYDE", "WINTER HBR", "ROCKLAND", "TENANTS HBR", "CUSHING", "OWLS HEAD", "ST GEORGE"),
+  lat = c(43.9, 44.4, 44.1, 44.0, 44.0, 44.1, 44.0),
+  lon = c(-69.3, -68.1, -69.1, -69.2, -69.3, -69.1, -69.2)
+)
+
+target_lat <- 44.0
+target_lon <- -69.3
+
+
+leaflet(data = locations) %>%
+  addTiles() %>%
+  addMarkers(~lon, ~lat, popup = ~name) %>%
+  addMarkers(lng = -69.3, lat = 44.0, popup = "HART ISLAND")
 ```
+
+
+
+
+
+
 
