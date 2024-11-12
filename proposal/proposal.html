@@ -4655,8 +4655,76 @@ leaflet(data = locations) %&gt;%
   addTiles() %&gt;%
   addMarkers(~lon, ~lat, popup = ~name) %&gt;%
   addMarkers(lng = -69.3, lat = 44.0, popup = &quot;HART ISLAND&quot;)</code></pre>
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-131a5246c2793ce6e403" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-131a5246c2793ce6e403">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[[43.9,44.4,44.1,44,44,44.1,44],[-69.3,-68.09999999999999,-69.09999999999999,-69.2,-69.3,-69.09999999999999,-69.2],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["PORT CLYDE","WINTER HBR","ROCKLAND","TENANTS HBR","CUSHING","OWLS HEAD","ST GEORGE"],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[44,-69.3,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"HART ISLAND",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[43.9,44.4],"lng":[-69.3,-68.09999999999999]}},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-57ebd3efb49c92a6ee51" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-57ebd3efb49c92a6ee51">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[[43.9,44.4,44.1,44,44,44.1,44],[-69.3,-68.09999999999999,-69.09999999999999,-69.2,-69.3,-69.09999999999999,-69.2],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["PORT CLYDE","WINTER HBR","ROCKLAND","TENANTS HBR","CUSHING","OWLS HEAD","ST GEORGE"],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[44,-69.3,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"HART ISLAND",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[43.9,44.4],"lng":[-69.3,-68.09999999999999]}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code># Step 1: Summarize trap counts by homeport
+homeport_counts &lt;- lobsters_anon |&gt;
+  group_by(`HOME PORT`) |&gt;
+  summarise(
+    trap_count = n(),
+    Longitude = first(`HOMEPORT LONG`),
+    Latitude = first(`HOMEPORT LAT`)
+  )
+
+# Filter out rows where homeport coordinates are NA
+homeports_known &lt;- homeport_counts |&gt;
+  filter(!is.na(Longitude) &amp; !is.na(Latitude))
+
+# Step 2: Set coordinates for Hart Island, ensuring they are numeric
+hart_island &lt;- c(
+  longitude = as.numeric(unique(lobsters_anon$`GPS COORD-Long`)[1]),
+  latitude = as.numeric(unique(lobsters_anon$`GPS COORDINATES-Lat`)[1])
+)
+
+# Step 3: Create spatial lines for each homeport leading to Hart Island
+# Convert to an sf object with lines for each homeport to Hart Island
+lines &lt;- homeports_known |&gt;
+  rowwise() |&gt;
+  mutate(
+    geometry = st_sfc(
+      st_linestring(
+        matrix(
+          c(Longitude, Latitude, hart_island[&quot;longitude&quot;], hart_island[&quot;latitude&quot;]),
+          ncol = 2, byrow = TRUE
+        )
+      )
+    )
+  ) |&gt;
+  st_as_sf(crs = 4326)
+
+# Step 4: Calculate the weight for each line based on trap count
+homeports_known &lt;- homeports_known |&gt;
+  mutate(weight = trap_count / max(trap_count) * 10)
+
+# Step 5: Create the leaflet map
+leaflet() |&gt;
+  addTiles() |&gt;
+  # Add lines with thickness proportional to trap count
+  addPolylines(
+    data = lines,
+    weight = homeports_known$weight, # Use precomputed weight
+    color = &quot;blue&quot;,
+    label = ~paste(`HOME PORT`, &quot;to Hart Island:&quot;, trap_count, &quot;traps&quot;)
+  ) |&gt;
+  # Add a marker for Hart Island
+  addCircleMarkers(
+    lng = hart_island[&quot;longitude&quot;],
+    lat = hart_island[&quot;latitude&quot;],
+    color = &quot;red&quot;,
+    radius = 5,
+    label = &quot;Hart Island&quot;
+  ) |&gt;
+  # Add markers for unknown homeports if any
+  addCircleMarkers(
+    data = lobsters_anon |&gt; filter(is.na(`HOME PORT`)),
+    lng = hart_island[&quot;longitude&quot;],
+    lat = hart_island[&quot;latitude&quot;],
+    color = &quot;gray&quot;,
+    radius = 3,
+    label = &quot;Unknown Homeport&quot;
+  )</code></pre>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-4cb0672783cc40e66aef" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-4cb0672783cc40e66aef">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addPolylines","args":[[[[{"lng":[-69.2615,-69.266659],"lat":[44.0138,43.905379]}]],[[{"lng":[-69.0573,-69.266659],"lat":[44.0823,43.905379]}]],[[{"lng":[-69.25830000000001,-69.266659],"lat":[43.9271,43.905379]}]],[[{"lng":[-69.10890000000001,-69.266659],"lat":[44.1037,43.905379]}]],[[{"lng":[-69.19889999999999,-69.266659],"lat":[44.0165,43.905379]}]],[[{"lng":[-69.2088,-69.266659],"lat":[43.9682,43.905379]}]],[[{"lng":[-68.083,-69.266659],"lat":[44.3948,43.905379]}]]],null,null,{"interactive":true,"className":"","stroke":true,"color":"blue","weight":[0.07246376811594203,0.07246376811594203,10,0.3623188405797101,0.4347826086956522,0.7246376811594203,0.07246376811594203],"opacity":0.5,"fill":false,"fillColor":"blue","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,["CUSHING to Hart Island: 1 traps","OWLS HEAD to Hart Island: 1 traps","PORT CLYDE to Hart Island: 138 traps","ROCKLAND to Hart Island: 5 traps","ST GEORGE to Hart Island: 6 traps","TENANTS HBR to Hart Island: 10 traps","WINTER HBR to Hart Island: 1 traps"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[43.905379,-69.266659,5,null,null,{"interactive":true,"className":"","stroke":true,"color":"red","weight":5,"opacity":0.5,"fill":true,"fillColor":"red","fillOpacity":0.2},null,null,null,null,"Hart Island",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[43.905379,-69.266659,3,null,null,{"interactive":true,"className":"","stroke":true,"color":"gray","weight":5,"opacity":0.5,"fill":true,"fillColor":"gray","fillOpacity":0.2},null,null,null,null,"Unknown Homeport",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[43.905379,44.3948],"lng":[-69.266659,-68.083]}},"evals":[],"jsHooks":[]}</script>
 </div>
 
 
