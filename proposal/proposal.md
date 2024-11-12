@@ -187,26 +187,45 @@ ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
 ![](proposal_files/figure-gfm/2%20age_graph-1.png)<!-- -->
 
 ``` r
+ggplot(data = true_lobsters, mapping = aes(x = `TAG ID NUMBER`)) +
+  geom_bar() +
+  labs(x = "Tag ID Number", y = "Number of Traps",
+  title = "Trap ID's Found on Hart Island") +
+  theme_linedraw() +
+  theme(axis.text.x = element_text(angle=45, hjust = 1))
+```
+
+![](proposal_files/figure-gfm/tag-ID-1.png)<!-- -->
+
+``` r
+#ggplot(data = true_lobsters, mapping = aes(x = `HOME PORT`)) +
+ # geom_bar() +
+  #labs(x = "Home Port of Trap", y = "Number of Traps",
+  #title = "Home Port of Traps Found on Hart Island") +
+  #theme_linedraw() +
+```
+
+``` r
 homeport_coords <- true_lobsters |>
   mutate(
-    "LONGITUDE" = case_when(
-     `HOME PORT` == "PORT CLYDE" ~ -69.3,
-     `HOME PORT` == "WINTER HBR" ~ -68.1,
-     `HOME PORT` == "ROCKLAND" ~ -69.1,
-     `HOME PORT` == "TENANTS HBR" ~ -69.2,
-     `HOME PORT` == "CUSHING" ~ -69.3,
-     `HOME PORT` == "OWLS HEAD" ~ -69.1,
-     `HOME PORT` == "ST GEORGE" ~ -69.2
+    "LATITUDE" = case_when(
+     `HOME PORT` == "PORT CLYDE" ~ 43.9271,
+     `HOME PORT` == "WINTER HBR" ~ 44.3948,
+     `HOME PORT` == "ROCKLAND" ~ 44.1037,
+     `HOME PORT` == "TENANTS HBR" ~ 43.9682,
+     `HOME PORT` == "CUSHING" ~ 44.0138,
+     `HOME PORT` == "OWLS HEAD" ~ 44.0823,
+     `HOME PORT` == "ST GEORGE" ~ 44.0165
     )) |>
   mutate(
-    "LATITUDE" = case_when(
-     `HOME PORT` == "PORT CLYDE" ~ 43.9,
-     `HOME PORT` == "WINTER HBR" ~ 44.4,
-     `HOME PORT` == "ROCKLAND" ~ 44.1,
-     `HOME PORT` == "TENANTS HBR" ~ 44.0,
-     `HOME PORT` == "CUSHING" ~ 44.0,
-     `HOME PORT` == "OWLS HEAD" ~ 44.1,
-     `HOME PORT` == "ST GEORGE" ~ 44.0
+    "LONGITUDE" = case_when(
+     `HOME PORT` == "PORT CLYDE" ~ -69.2583,
+     `HOME PORT` == "WINTER HBR" ~ -68.0830,
+     `HOME PORT` == "ROCKLAND" ~ -69.1089,
+     `HOME PORT` == "TENANTS HBR" ~ -69.2088,
+     `HOME PORT` == "CUSHING" ~ -69.2615,
+     `HOME PORT` == "OWLS HEAD" ~ -69.0573,
+     `HOME PORT` == "ST GEORGE" ~ -69.1989
     ))
 ```
 
