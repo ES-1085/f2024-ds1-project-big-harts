@@ -94,7 +94,7 @@ ggplot(data = true_lobsters, mapping = aes(x = `TAG ID NUMBER`)) +
 
 ```
 
-```{r homeport_map}
+```{r homeport_coords}
 homeport_coords <- true_lobsters |>
   mutate(
     "LATITUDE" = case_when(
