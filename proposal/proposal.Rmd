@@ -182,18 +182,18 @@ library(leaflet)
 # Define your locations
 locations <- data.frame(
   name = c("PORT CLYDE", "WINTER HBR", "ROCKLAND", "TENANTS HBR", "CUSHING", "OWLS HEAD", "ST GEORGE"),
-  lat = c(43.9, 44.4, 44.1, 44.0, 44.0, 44.1, 44.0),
-  lon = c(-69.3, -68.1, -69.1, -69.2, -69.3, -69.1, -69.2)
+  lat = c(43.9271, 44.3948, 44.1037, 43.9682, 44.0138, 44.0823, 44.0165),
+  lon = c(-69.2583, -68.0830, -69.1089, -69.2088, -69.2615, -69.0573, -69.1989)
 )
 
-target_lat <- 44.0
-target_lon <- -69.3
+target_lat <- 43.90538
+target_lon <- -69.266659
 
 
 leaflet(data = locations) %>%
   addTiles() %>%
   addMarkers(~lon, ~lat, popup = ~name) %>%
-  addMarkers(lng = -69.3, lat = 44.0, popup = "HART ISLAND")
+  addMarkers(lng = -69.266659, lat = 43.90538, popup = "HART ISLAND")
 ```
 
 
