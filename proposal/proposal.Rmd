@@ -93,25 +93,6 @@ ggplot(data = true_lobsters, mapping = aes(x = `TAG ID NUMBER`, fill = `HOME POR
   scale_fill_viridis_d(option = "D", name = "Home Port")
 ```
 
-```{r home-port}
-
-homeports_known$`HOME PORT` <- factor(homeports_known$`HOME PORT`, 
-   levels = homeports_known %>%
-   arrange(desc(trap_count)) %>%
-   pull(`HOME PORT`))
-
-ggplot(data = homeports_known, aes(x = "", y = trap_count, fill = `HOME PORT`)) +
-  geom_bar(stat = "identity", width = 1) +
-  coord_polar(theta = "y") +
-  labs(
-    fill = "Home Port",
-    title = "Distribution of Trap Counts by Home Port on Hart Island"
-  ) +
-  theme_void() +
-  scale_fill_viridis_d(option = "D") +
-  theme(legend.position = "right")
-```
-
 ```{r homeport_coords}
 homeport_coords <- true_lobsters |>
   mutate(
@@ -245,6 +226,16 @@ lines <- homeports_known |>
 homeports_known <- homeports_known |>
   mutate(weight = trap_count / max(trap_count) * 10)
 
+# Define your locations
+locations <- data.frame(
+  name = c("PORT CLYDE", "WINTER HBR", "ROCKLAND", "TENANTS HBR", "CUSHING", "OWLS HEAD", "ST GEORGE"),
+  lat = c(43.9271, 44.3948, 44.1037, 43.9682, 44.0138, 44.0823, 44.0165),
+  lon = c(-69.2583, -68.0830, -69.1089, -69.2088, -69.2615, -69.0573, -69.1989)
+)
+
+target_lat <- 43.90538
+target_lon <- -69.266659
+
 # Step 5: Create the leaflet map
 leaflet() |>
   addTiles() |>
@@ -276,4 +267,22 @@ leaflet() |>
 addMarkers(data = locations, lng = ~lon, lat = ~lat, popup = ~name) %>%
   addMarkers(lng = -69.266659, lat = 43.90538, popup = "HART ISLAND") 
 
+```
+```{r home-port}
+
+homeports_known$`HOME PORT` <- factor(homeports_known$`HOME PORT`, 
+   levels = homeports_known %>%
+   arrange(desc(trap_count)) %>%
+   pull(`HOME PORT`))
+
+ggplot(data = homeports_known, aes(x = "", y = trap_count, fill = `HOME PORT`)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  labs(
+    fill = "Home Port",
+    title = "Distribution of Trap Counts by Home Port on Hart Island"
+  ) +
+  theme_void() +
+  scale_fill_viridis_d(option = "D") +
+  theme(legend.position = "right")
 ```
