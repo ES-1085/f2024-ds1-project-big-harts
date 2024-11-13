@@ -274,6 +274,6 @@ leaflet() |>
     label = "Unknown Homeport"
   ) %>% 
 addMarkers(data = locations, lng = ~lon, lat = ~lat, popup = ~name) %>%
-  addMarkers(lng = -69.266659, lat = 43.90538, popup = "HART ISLAND")
+  addMarkers(lng = -69.266659, lat = 43.90538, popup = "HART ISLAND") 
 
 ```
