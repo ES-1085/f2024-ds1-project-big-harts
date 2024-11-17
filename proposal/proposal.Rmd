@@ -23,13 +23,13 @@ With this data we aim to explore the relationship between abandoned lobster trap
 
 ## 2. Data
 
-```{r}
+```{r read_lobsters}
 lobsters <- read_csv(file = "../data/lobsters.csv")
 glimpse(lobsters)
 ```
 
 Remove unnecessary text rows at bottom of dataset:
-```{r}
+```{r glimpse_true_lobsters}
 true_lobsters <- head(lobsters, -4)
 glimpse(true_lobsters)
 ```
@@ -176,7 +176,7 @@ The data ethics review section will be introduced in a separate class and is not
 
 
 
-```{r}
+```{r homeport_points}
 library(leaflet)
 
 # Define your locations
