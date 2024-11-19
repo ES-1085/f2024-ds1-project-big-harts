@@ -63,11 +63,17 @@ ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
   theme_linedraw() +
   scale_x_continuous(breaks = seq(0, 10, by = 1))
 ```
+<<<<<<< HEAD
 ```{r tag-ID-&-port}
 trap_data <- true_lobsters %>%
+=======
+```{r}
+  trap_data <- true_lobsters %>%
+>>>>>>> ad40b5bb0c2f8a4fd096b39e39fb5ee82ef8c706
   count(`TAG ID NUMBER`, `HOME PORT`) %>%
-  arrange(desc(n)) 
-
+  arrange(desc(n)) %>%
+  mutate(`HOME PORT` = if_else(`HOME PORT` == "N/A", "UNKNOWN", `HOME PORT`)) 
+         
 
 trap_data$`TAG ID NUMBER` <- fct_reorder(trap_data$`TAG ID NUMBER`, trap_data$n, .desc = TRUE)
 
@@ -78,6 +84,10 @@ ggplot(data = trap_data, aes(x = `TAG ID NUMBER`, y = n, fill = `HOME PORT`)) +
   theme_linedraw() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_viridis_d(option = "H", name = "Home Port", direction = -1)
+
+
+```
+
 
 ```
 
