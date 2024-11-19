@@ -222,9 +222,8 @@ lines <- homeports_known |>
   ) |>
   st_as_sf(crs = 4326)
 
-# Step 4: Calculate the weight for each line based on trap count
-homeports_known <- homeports_known |>
-  mutate(weight = trap_count / max(trap_count) * 10)
+# Step 4: Define a color scale for markers
+color_scale <- colorNumeric(palette = "YlOrRd", domain = homeport_counts$trap_count)
 
 # Define your locations
 locations <- data.frame(
@@ -236,37 +235,52 @@ locations <- data.frame(
 target_lat <- 43.90538
 target_lon <- -69.266659
 
+# Create a color scale for trap counts
+color_scale <- colorNumeric(
+  palette = "YlOrRd", # Color palette (Yellow-Orange-Red)
+  domain = homeport_counts$trap_count, # Range of values
+  na.color = "gray" # Handle missing values
+)
+
 # Step 5: Create the leaflet map
 leaflet() |>
-  addTiles() |>
+  addProviderTiles("Stadia.AlidadeSmoothDark") |>
   # Add lines with thickness proportional to trap count
   addPolylines(
     data = lines,
-    weight = homeports_known$weight, # Use precomputed weight
+    weight = 3,
     color = "blue",
-    opacity = 20,
+    opacity = 0.7,
     label = ~paste(`HOME PORT`, "to Hart Island:", trap_count, "traps")
   ) |>
   # Add a marker for Hart Island
   addCircleMarkers(
     lng = hart_island["longitude"],
     lat = hart_island["latitude"],
-    color = "red",
+    color = "green",
     radius = 5,
     label = "Hart Island"
   ) |>
-  # Add markers for unknown homeports if any
+  # Add markers for homeports with colors based on trap_count
   addCircleMarkers(
-    data = lobsters_anon |> filter(is.na(`HOME PORT`)),
-    lng = hart_island["longitude"],
-    lat = hart_island["latitude"],
-    color = "gray",
-    radius = 3,
-    label = "Unknown Homeport"
-  ) %>% 
-addMarkers(data = locations, lng = ~lon, lat = ~lat, popup = ~name) %>%
-  addMarkers(lng = -69.266659, lat = 43.90538, popup = "HART ISLAND") 
-
+    data = homeport_counts,
+    lng = ~Longitude,
+    lat = ~Latitude,
+    radius = 8,
+    color = ~color_scale(trap_count),  # Set border color
+    fillColor = ~color_scale(trap_count),  # Set fill color
+    fillOpacity = 0.8,  # Adjust opacity for visibility
+    label = ~paste(`HOME PORT`, ": ", trap_count, "traps")
+  ) |>
+  
+  # Add legend
+  addLegend(
+    position = "bottomright",
+    pal = color_scale,
+    values = homeport_counts$trap_count,
+    title = "Trap Count",
+    opacity = 0.7
+  )
 ```
 ```{r home-port}
 
@@ -286,3 +300,8 @@ ggplot(data = homeports_known, aes(x = "", y = trap_count, fill = `HOME PORT`)) 
   scale_fill_viridis_d(option = "D") +
   theme(legend.position = "right")
 ```
+
+```{r}
+
+```
+
