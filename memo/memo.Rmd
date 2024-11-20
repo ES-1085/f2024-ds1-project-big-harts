@@ -119,6 +119,16 @@ theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ```
 
+### Plot 2: _________
+
+```{r age_graph, fig.alt= "Bar plot showing the ages of lobster traps collected on Hart Island, displaying the amount of traps at each age. 1 year of age has the highest amount, with trap count decreasing as age increases, showing that fewer traps survive as time passes"}
+ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
+  geom_bar() +
+  labs(x = "Age of Traps (Number of Tags in Bundle)", y = "Number of Traps",
+  title = "Age of Traps Collected on Hart Island") +
+  theme_linedraw() +
+  scale_x_continuous(breaks = seq(0, 10, by = 1))
+```
 
 #### Data cleanup steps specific to plot 1
 
@@ -135,8 +145,6 @@ These data cleaning sections are optional and depend on if you have some data cl
 
 ```
 
-
-### Plot 2: _________
 
 ### Plot 3: ___________
 
