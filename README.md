@@ -1,4 +1,5 @@
 Trapped In Time
+A Data Dive into Lobster Trap Debris on Hart Island, Maine
 ================
 by Lydia Burnet, Orr Uzan-Tidhar, and Greta Bernier
 
