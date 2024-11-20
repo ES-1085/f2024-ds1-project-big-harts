@@ -119,7 +119,7 @@ theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ```
 
-### Plot 2: _________
+### Plot 2: Test plot of trap ages
 
 ```{r age_graph, fig.alt= "Bar plot showing the ages of lobster traps collected on Hart Island, displaying the amount of traps at each age. 1 year of age has the highest amount, with trap count decreasing as age increases, showing that fewer traps survive as time passes"}
 ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
@@ -130,14 +130,30 @@ ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
   scale_x_continuous(breaks = seq(0, 10, by = 1))
 ```
 
-#### Data cleanup steps specific to plot 1
 
-These data cleaning sections are optional and depend on if you have some data cleaning steps specific to a particular plot
+### Plot 3: Trap IDs Found on Hart Island
 
-```{r}
+#### Data cleanup steps specific to plot 3
 
+
+```{r data_cleanup_p3}
+  trap_data <- true_lobsters %>%
+  count(`TAG ID NUMBER`, `HOME PORT`) %>%
+  arrange(desc(n)) %>%
+  mutate(`HOME PORT` = if_else(`HOME PORT` == "N/A", "UNKNOWN", `HOME PORT`))
+
+trap_data$`TAG ID NUMBER` <- fct_reorder(trap_data$`TAG ID NUMBER`, trap_data$n, .desc = TRUE)
 ```
 
+```{r trap_ids, fig.alt= "Bar plot showing the number of lobster traps belonging to each individual collected on Hart Island. The plot shows that an overwhelming majority belonged to one person, with the ID 9899, having over 80 lost traps"}
+ggplot(data = trap_data, aes(x = `TAG ID NUMBER`, y = n, fill = `HOME PORT`)) +
+  geom_bar(stat = "identity") +
+  labs(x = "Tag ID Number", y = "Number of Traps",
+       title = "Trap IDs Found on Hart Island") +
+  theme_linedraw() +
+  theme(axis.text.x = element_text(angle = 70, hjust = 1)) +
+  scale_fill_viridis_d(option = "H", name = "Home Port", direction = -1)
+```
 
 #### Final Plot 1
 
@@ -145,8 +161,6 @@ These data cleaning sections are optional and depend on if you have some data cl
 
 ```
 
-
-### Plot 3: ___________
 
 Add more plot sections as needed. Each project should have at least 3 plots, but talk to me if you have fewer than 3.
 
