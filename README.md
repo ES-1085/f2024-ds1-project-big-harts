@@ -33,12 +33,6 @@ Our presentation can be found [here](https://www.canva.com/design/DAGWTc8aZeg/sS
 
 A link to the code and how we created our graphics in our memo can be found [here](https://es-1085.github.io/f2024-ds1-project-big-harts/memo/memo.html).
 
-## Data
-Include a citation for your data here. See
-<http://libraryguides.vu.edu.au/c.php?g=386501&p=4347840> for guidance
-on proper citation for datasets. If you got your data off the web, make
-sure to note the retrieval date.
-
 ## Conclusion 
 
 The accumulation of marine debris in the Gulf of Maine poses a huge concern for many environments and those who inhabit them. The immense presence of debris can often feel overwhelming with no standardized removal practices in place. Finding and communicating the trends of the debris's longevity, abundance, and distribution can help inform solutions. Data collection efforts like this are also key to creating accountability for the producers of this waste, an important step to mitigating this problem in the future.
@@ -50,7 +44,7 @@ The accumulation of marine debris in the Gulf of Maine poses a huge concern for 
 - A look at [bio-based aquaculture gear alternatives](https://news.mongabay.com/2024/10/startups-replace-plastics-with-mushrooms-in-the-seafood-industry/) in the region 
 - For those interested in [volunteering onboard](https://www.rozaliaproject.org/jump-in) with the Rozalia Project 
 
-## References
+## Data References
 
 Rozalia Project, https://www.rozaliaproject.org/. Accessed 20 November 2024.
 
