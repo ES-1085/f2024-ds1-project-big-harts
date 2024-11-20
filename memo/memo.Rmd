@@ -110,29 +110,15 @@ ggsave("example-starwars-wide.png", width = 6, height = 4)
 
 
 
-### Plot 1: _________
+### Plot 1: Preliminary data visualisation
 
-```{r traps_ages_1}
-ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
+```{r prelim_vis_testing, fig.alt= "Bar plot of lobster traps collected on Hart Island that shows the number of traps belonging to each individual. The plot tells us that Brian York had the most traps, over 80"}
+ggplot(data = true_lobsters, mapping = aes(x = `NAMED INDIVIDUAL`)) +
   geom_bar() +
-  labs(x = "Age of Traps (Years)", y = "Number of Traps",
-  title = "Age of Traps Collected on Hart Island") +
-  theme_linedraw() +
-  scale_x_reverse(breaks = seq(10, 0, by = -1))
+theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-ggsave("hart-traps-ages.png", width = 4, height = 4)
 ```
 
-```{r 2_age_graph}
-ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
-  geom_bar() +
-  labs(x = "Age of Traps (Years)", y = "Number of Traps",
-  title = "Age of Traps Collected on Hart Island") +
-  theme_linedraw() +
-  scale_x_continuous(breaks = seq(0, 10, by = 1))
-  
-ggsave("hart-traps-ages-2.png", width = 4, height = 4)
-```
 
 #### Data cleanup steps specific to plot 1
 
