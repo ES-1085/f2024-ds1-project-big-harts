@@ -46,9 +46,9 @@ The accumulation of marine debris in the Gulf of Maine poses a huge concern for 
 
 ## Resources 
 
-- [PBS special](https://www.pbs.org/newshour/show/ghost-gear-piles-up-in-the-gulf-of-maine-amid-plastic-onslaught-on-oceans) about the Hart Island cleanup!
+- [PBS special](https://www.pbs.org/newshour/show/ghost-gear-piles-up-in-the-gulf-of-maine-amid-plastic-onslaught-on-oceans) about the Hart Island cleanup
 - A look at [bio-based aquaculture gear alternatives](https://news.mongabay.com/2024/10/startups-replace-plastics-with-mushrooms-in-the-seafood-industry/) in the region 
-- If you are interested in [volunteering onboard](https://www.rozaliaproject.org/jump-in) with the Rozalia Project 
+- For those interested in [volunteering onboard](https://www.rozaliaproject.org/jump-in) with the Rozalia Project 
 
 ## References
 
