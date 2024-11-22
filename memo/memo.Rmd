@@ -1,7 +1,7 @@
 ---
 title: "Hart Island Trap memo"
 author: "Big Harts"
-output: github_document
+output: html_document
 ---
 
 This document contains a detailed account of the data clean up and the design choices that were made for the plots used in our project. 
@@ -9,6 +9,9 @@ This document contains a detailed account of the data clean up and the design ch
 ```{r load-packages, message = FALSE}
 library(tidyverse)
 library(broom)
+library(leaflet)
+library(sf)
+library(dplyr)
 ```
 
 ## Data Clean Up Steps for Overall Data
