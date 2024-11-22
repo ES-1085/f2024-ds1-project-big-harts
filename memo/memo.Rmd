@@ -215,6 +215,8 @@ color_scale <- colorNumeric(palette = "YlOrRd", domain = homeport_counts$trap_co
 
 
 #### Final Plot
+
+In creating the map, we decided to use a dark background. This ensures that the lines and markers are all clearly visible and can be easily read against the dark background.
 ```{r homeport_maps, fig.alt= "Map with markers showing each of the identified home ports that at least one trap was identified as originating from. Home port markers are coloured by the number of traps that came from them, with blue lines linking each home port to Hart Island, where the traps were collected"}
 leaflet() |>
   addProviderTiles("Stadia.AlidadeSmoothDark") |>
