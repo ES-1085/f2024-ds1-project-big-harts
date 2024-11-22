@@ -1,6 +1,6 @@
 Hart Isalnd Trap memo
 ================
-Big Harts
+Big Harts!
 
 This document should contain a detailed account of the data clean up for
 your data and the design choices you are making for your plots. For

@@ -1,6 +1,6 @@
 ---
 title: "Hart Isalnd Trap memo"
-author: "Big Harts"
+author: "Big Harts!"
 output: github_document
 ---
 
