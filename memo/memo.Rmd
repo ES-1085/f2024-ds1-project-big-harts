@@ -101,7 +101,7 @@ theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ### Plot 2: Test plot of trap ages
 
-```{r age_graph, fig.alt= "Bar plot showing the ages of lobster traps collected on Hart Island, displaying the amount of traps at each age. 1 year of age has the highest amount, with trap count decreasing as age increases, showing that fewer traps survive as time passes"}
+```{r age_graph, fig.alt= "Bar plot showing the ages of lobster traps collected on Hart Island, displaying the amount of traps at each age. 1 year of age has the highest amount, with trap count decreasing as age increases, showing that fewer traps survive as time passes, we decided to keep the color of the bars black and white so as not to distract from the overall data showing age in correlation to traps"}
 ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
   geom_bar() +
   labs(x = "Age of Traps (Number of Tags in Bundle)", y = "Number of Traps",
@@ -115,14 +115,12 @@ ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
 
 
 
-#### Data cleanup steps specific to plot 3
-This graph is showing the correlation of number of lobster traps to individuals and their home ports. We can see the majority of traps found came from Port Clyde. While most of the individuals are linked to 30 or less traps, one outlier from Port Clyde has closer to 85 lost traps. To tidy the data, we arranged the graph in descending order using arrange(desc(n)) function, and mutated the N/A variable to read as "Unknown" using the mutate() function. 
 
 #### Data Cleanup
 
 
 #### Data cleanup steps specific to plot 3
-This graph is showing the correlation of number of lobster traps to individuals and their home ports. We can see the majority of traps found came from Port Clyde. While most of the individuals are linked to 30 or less traps, one outlier from Port Clyde has closer to 85 lost traps. To tidy the data, we arranged the graph in descending order using arrange(desc(n)) function, and mutated the N/A variable to read as "Unknown" using the mutate() function. 
+This graph is showing the correlation of number of lobster traps to individuals and their home ports. We can see the majority of traps found came from Port Clyde. While most of the individuals are linked to 30 or less traps, one outlier from Port Clyde has closer to 85 lost traps. To tidy the data, we arranged the graph in descending order using arrange(desc(n)) function, and mutated the N/A variable to read as "Unknown" using the mutate() function. We chose the color option "H" with a variety of different colors, so each variable could be assigned its own color so as to easily differentiate between variables. 
 
 
 ```{r data_cleanup_p3}
