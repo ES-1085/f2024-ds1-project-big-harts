@@ -40,3 +40,6 @@ Variables:15
 - `Homeport Lat`: Latitude coordinate of Home Port
 - `Homeport Long`: Longitude coordinate of Home Port
 - `Individuals`: Initials of individuals to which a trap is registered
+
+Observations: 223
+Variables: 18
