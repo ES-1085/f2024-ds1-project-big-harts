@@ -46,13 +46,14 @@ glimpse(true_lobsters)
 
 5) We are also considering looking to see if there is a correlation between a trap's homeport and the number of tags in the bundle (which represents how many )
 
-```{r prelim_vis_testing}
+```{r prelim_vis_testing, fig.alt= "Bar plot of lobster traps collected on Hart Island that shows the number of traps belonging to each individual. The plot tells us that Brian York had the most traps, over 80"}
 ggplot(data = true_lobsters, mapping = aes(x = `NAMED INDIVIDUAL`)) +
   geom_bar() +
 theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ```
 
+<<<<<<< HEAD
 
 ```{r trap-age-graph}
 ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
@@ -68,6 +69,17 @@ ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
 trap_data <- true_lobsters %>%
 =======
 ```{r}
+=======
+```{r age_graph, fig.alt= "Bar plot showing the ages of lobster traps collected on Hart Island, displaying the amount of traps at each age. 1 year of age has the highest amount, with trap count decreasing as age increases, showing that fewer traps survive as time passes"}
+ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
+  geom_bar() +
+  labs(x = "Age of Traps (Number of Tags in Bundle)", y = "Number of Traps",
+  title = "Age of Traps Collected on Hart Island") +
+  theme_linedraw() +
+  scale_x_continuous(breaks = seq(0, 10, by = 1))
+```
+```{r trap_ids, fig.alt= "Bar plot showing the number of lobster traps belonging to each individual collected on Hart Island. The plot shows that an overwhelming majority belonged to one person, with the ID 9899, having over 80 lost traps"}
+>>>>>>> 5884db4aa9b7d7ebc8e1a7efb6dd97b68aae8388
   trap_data <- true_lobsters %>%
 >>>>>>> ad40b5bb0c2f8a4fd096b39e39fb5ee82ef8c706
   count(`TAG ID NUMBER`, `HOME PORT`) %>%
@@ -82,16 +94,23 @@ ggplot(data = trap_data, aes(x = `TAG ID NUMBER`, y = n, fill = `HOME PORT`)) +
   labs(x = "Tag ID Number", y = "Number of Traps",
        title = "Trap IDs Found on Hart Island") +
   theme_linedraw() +
+<<<<<<< HEAD
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+=======
+  theme(axis.text.x = element_text(angle = 70, hjust = 1)) +
+>>>>>>> 5884db4aa9b7d7ebc8e1a7efb6dd97b68aae8388
   scale_fill_viridis_d(option = "H", name = "Home Port", direction = -1)
 
 
 ```
 
+<<<<<<< HEAD
 
 ```
 
 
+=======
+>>>>>>> 5884db4aa9b7d7ebc8e1a7efb6dd97b68aae8388
 ```{r homeport_coords}
 homeport_coords <- true_lobsters |>
   mutate(
@@ -150,13 +169,7 @@ lobsters_anon <- homeport_coords |>
 write.csv(lobsters_anon, "../data/lobsters_anon.csv", row.names = FALSE)
 ```
 
-## 4. Data Ethics Review
-
-The data ethics review section will be introduced in a separate class and is not part of the original proposal deadline.
-
-
-
-```{r homeport_points}
+```{r homeport_points, fig.alt= "Map with blue markers pointing to each of the home ports identified as an origin for at least one of the traps collected on Hart Island"}
 library(leaflet)
 
 # Define your locations
@@ -177,12 +190,17 @@ leaflet(data = locations) %>%
 ```
 
 
+<<<<<<< HEAD
 ```{r homeport_maps}
 ```
 
 
 ```{r homeport_maps}
 # Step 1: Summarize trap counts by homeport
+=======
+```{r homeport_maps, fig.alt= "Map with markers showing each of the identified home ports that at least one trap was identified as originating from. Home port markers are coloured by the number of traps that came from them, with blue lines linking each home port to Hart Island, where the traps were collected"}
+#Summarise trap counts by homeport
+>>>>>>> 5884db4aa9b7d7ebc8e1a7efb6dd97b68aae8388
 homeport_counts <- lobsters_anon |>
   group_by(`HOME PORT`) |>
   summarise(
@@ -190,27 +208,18 @@ homeport_counts <- lobsters_anon |>
     Longitude = first(`HOMEPORT LONG`),
     Latitude = first(`HOMEPORT LAT`)
   ) 
-locations <- data.frame(
-  name = c("PORT CLYDE", "WINTER HBR", "ROCKLAND", "TENANTS HBR", "CUSHING", "OWLS HEAD", "ST GEORGE"),
-  lat = c(43.9271, 44.3948, 44.1037, 43.9682, 44.0138, 44.0823, 44.0165),
-  lon = c(-69.2583, -68.0830, -69.1089, -69.2088, -69.2615, -69.0573, -69.1989)
-)
 
-target_lat <- 43.90538
-target_lon <- -69.266659
-
-# Filter out rows where homeport coordinates are NA
+#Filter out NA values
 homeports_known <- homeport_counts |>
   filter(!is.na(Longitude) & !is.na(Latitude))
 
-# Step 2: Set coordinates for Hart Island, ensuring they are numeric
+#Set Hart Island coordinates
 hart_island <- c(
   longitude = as.numeric(unique(lobsters_anon$`GPS COORD-Long`)[1]),
   latitude = as.numeric(unique(lobsters_anon$`GPS COORDINATES-Lat`)[1])
 )
 
-# Step 3: Create spatial lines for each homeport leading to Hart Island
-# Convert to an sf object with lines for each homeport to Hart Island
+#Create lines linking each home port to Hart Island
 lines <- homeports_known |>
   rowwise() |>
   mutate(
@@ -225,30 +234,16 @@ lines <- homeports_known |>
   ) |>
   st_as_sf(crs = 4326)
 
-# Step 4: Define a color scale for markers
+#Home port colour scale
 color_scale <- colorNumeric(palette = "YlOrRd", domain = homeport_counts$trap_count)
 
-# Define your locations
-locations <- data.frame(
-  name = c("PORT CLYDE", "WINTER HBR", "ROCKLAND", "TENANTS HBR", "CUSHING", "OWLS HEAD", "ST GEORGE"),
-  lat = c(43.9271, 44.3948, 44.1037, 43.9682, 44.0138, 44.0823, 44.0165),
-  lon = c(-69.2583, -68.0830, -69.1089, -69.2088, -69.2615, -69.0573, -69.1989)
-)
 
-target_lat <- 43.90538
-target_lon <- -69.266659
 
-# Create a color scale for trap counts
-color_scale <- colorNumeric(
-  palette = "YlOrRd", # Color palette (Yellow-Orange-Red)
-  domain = homeport_counts$trap_count, # Range of values
-  na.color = "gray" # Handle missing values
-)
-
-# Step 5: Create the leaflet map
+#Leaflet Map
 leaflet() |>
   addProviderTiles("Stadia.AlidadeSmoothDark") |>
-  # Add lines with thickness proportional to trap count
+  
+  #Homeport Lines
   addPolylines(
     data = lines,
     weight = 3,
@@ -256,7 +251,8 @@ leaflet() |>
     opacity = 0.7,
     label = ~paste(`HOME PORT`, "to Hart Island:", trap_count, "traps")
   ) |>
-  # Add a marker for Hart Island
+  
+  #Hart Island Marker
   addCircleMarkers(
     lng = hart_island["longitude"],
     lat = hart_island["latitude"],
@@ -264,7 +260,8 @@ leaflet() |>
     radius = 5,
     label = "Hart Island"
   ) |>
-  # Add markers for homeports with colors based on trap_count
+  
+  #Homeport Markers
   addCircleMarkers(
     data = homeport_counts,
     lng = ~Longitude,
@@ -276,7 +273,7 @@ leaflet() |>
     label = ~paste(`HOME PORT`, ": ", trap_count, "traps")
   ) |>
   
-  # Add legend
+  # Map legend
   addLegend(
     position = "bottomright",
     pal = color_scale,
