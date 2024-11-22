@@ -53,11 +53,12 @@ theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ```
 
-```{r age_graph, fig.alt= "Bar plot showing the ages of lobster traps collected on Hart Island, displaying the amount of traps at each age. 1 year of age has the highest amount, with trap count decreasing as age increases, showing that fewer traps survive as time passes"}
+```{r trap-age-graph,  fig.alt= "Bar plot showing the ages of lobster traps collected on Hart Island, displaying the amount of traps at each age. 1 year of age has the highest amount, with trap count decreasing as age increases, showing that fewer traps survive as time passes"}
 ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
-  geom_bar() +
-  labs(x = "Age of Traps (Number of Tags in Bundle)", y = "Number of Traps",
-  title = "Age of Traps Collected on Hart Island") +
+  geom_bar(fill = "darkblue") +
+  labs(x = "Age of Traps (Number of Tags in Bundle)", 
+       y = "Number of Traps",
+       title = "Age of Traps Collected on Hart Island") +
   theme_linedraw() +
   scale_x_continuous(breaks = seq(0, 10, by = 1))
 ```
@@ -67,7 +68,6 @@ ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
   arrange(desc(n)) %>%
   mutate(`HOME PORT` = if_else(`HOME PORT` == "N/A", "UNKNOWN", `HOME PORT`)) 
          
-
 trap_data$`TAG ID NUMBER` <- fct_reorder(trap_data$`TAG ID NUMBER`, trap_data$n, .desc = TRUE)
 
 ggplot(data = trap_data, aes(x = `TAG ID NUMBER`, y = n, fill = `HOME PORT`)) +
@@ -75,9 +75,9 @@ ggplot(data = trap_data, aes(x = `TAG ID NUMBER`, y = n, fill = `HOME PORT`)) +
   labs(x = "Tag ID Number", y = "Number of Traps",
        title = "Trap IDs Found on Hart Island") +
   theme_linedraw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   theme(axis.text.x = element_text(angle = 70, hjust = 1)) +
   scale_fill_viridis_d(option = "H", name = "Home Port", direction = -1)
-
 
 ```
 
@@ -159,8 +159,11 @@ leaflet(data = locations) %>%
   addMarkers(lng = -69.266659, lat = 43.90538, popup = "HART ISLAND")
 ```
 
-
+```{r homeport_maps}
+# Step 1: Summarize trap counts by homeport
+=======
 ```{r homeport_maps, fig.alt= "Map with markers showing each of the identified home ports that at least one trap was identified as originating from. Home port markers are coloured by the number of traps that came from them, with blue lines linking each home port to Hart Island, where the traps were collected"}
+
 #Summarise trap counts by homeport
 homeport_counts <- lobsters_anon |>
   group_by(`HOME PORT`) |>
@@ -197,7 +200,6 @@ lines <- homeports_known |>
 
 #Home port colour scale
 color_scale <- colorNumeric(palette = "YlOrRd", domain = homeport_counts$trap_count)
-
 
 
 #Leaflet Map

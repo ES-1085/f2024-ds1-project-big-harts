@@ -1,10 +1,10 @@
 ---
-title: "Hart Isalnd Trap memo"
-author: "Big Harts!"
+title: "Hart Island Trap memo"
+author: "Big Harts"
 output: github_document
 ---
 
-This document should contain a detailed account of the data clean up for your data and the design choices you are making for your plots. For instance you will want to document choices you've made that were intentional for your graphic, e.g. color you've chosen for the plot. Think of this document as a code script someone can follow to reproduce the data cleaning steps and graphics in your handout.
+This document contains a detailed account of the data clean up and the design choices that were made for the plots used in our project. 
 
 ```{r load-packages, message = FALSE}
 library(tidyverse)
@@ -111,10 +111,15 @@ ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
 ### Plot 3: Trap IDs Found on Hart Island
 
 
+
 #### Data cleanup steps specific to plot 3
 This graph is showing the correlation of number of lobster traps to individuals and their home ports. We can see the majority of traps found came from Port Clyde. While most of the individuals are linked to 30 or less traps, one outlier from Port Clyde has closer to 85 lost traps. To tidy the data, we arranged the graph in descending order using arrange(desc(n)) function, and mutated the N/A variable to read as "Unknown" using the mutate() function. 
 
 #### Data Cleanup
+
+
+#### Data cleanup steps specific to plot 3
+This graph is showing the correlation of number of lobster traps to individuals and their home ports. We can see the majority of traps found came from Port Clyde. While most of the individuals are linked to 30 or less traps, one outlier from Port Clyde has closer to 85 lost traps. To tidy the data, we arranged the graph in descending order using arrange(desc(n)) function, and mutated the N/A variable to read as "Unknown" using the mutate() function. 
 
 
 ```{r data_cleanup_p3}
