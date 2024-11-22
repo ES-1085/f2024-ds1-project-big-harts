@@ -110,12 +110,12 @@ ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
 
 ### Plot 3: Trap IDs Found on Hart Island
 
-<<<<<<< HEAD
+
 #### Data cleanup steps specific to plot 3
 This graph is showing the correlation of number of lobster traps to individuals and their home ports. We can see the majority of traps found came from Port Clyde. While most of the individuals are linked to 30 or less traps, one outlier from Port Clyde has closer to 85 lost traps. To tidy the data, we arranged the graph in descending order using arrange(desc(n)) function, and mutated the N/A variable to read as "Unknown" using the mutate() function. 
-=======
+
 #### Data Cleanup
->>>>>>> 30c83b247dbfafe22eaf92c1cbb4f81c211dc8bd
+
 
 ```{r data_cleanup_p3}
   trap_data <- true_lobsters %>%
@@ -206,6 +206,7 @@ lines <- homeports_known |>
 #Home port colour scale
 color_scale <- colorNumeric(palette = "YlOrRd", domain = homeport_counts$trap_count)
 ```
+
 
 #### Final Plot
 ```{r homeport_maps, fig.alt= "Map with markers showing each of the identified home ports that at least one trap was identified as originating from. Home port markers are coloured by the number of traps that came from them, with blue lines linking each home port to Hart Island, where the traps were collected"}
