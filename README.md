@@ -1,7 +1,8 @@
-Trapped In Time
-A Data Dive into Lobster Trap Debris on Hart Island, Maine
-================
-by Lydia Burnet, Orr Uzan-Tidhar, and Greta Bernier
+# Trapped In Time:
+
+## A Data Dive into Lobster Trap Debris on Hart Island, Maine
+ 
+### by Lydia Burnet, Orr Uzan-Tidhar, and Greta Bernier
 
 ## Summary
 
@@ -28,7 +29,7 @@ By looking at the relationship between the number of lost lobster traps and the 
 
 ## Handout
 
-Our presentation can be found [here](https://www.canva.com/design/DAGWTc8aZeg/sScVJIVu-qXnDUHvACw00g/view?utm_content=DAGWTc8aZeg&utm_campaign=designshare&utm_medium=link&utm_source=editor).
+A handout containing a short summary of our project for ease of public viewing can be found [here](https://www.canva.com/design/DAGWTc8aZeg/sScVJIVu-qXnDUHvACw00g/view?utm_content=DAGWTc8aZeg&utm_campaign=designshare&utm_medium=link&utm_source=editor).
 
 ## Memo
 
