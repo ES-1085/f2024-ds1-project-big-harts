@@ -202,48 +202,63 @@ ggsave("example-starwars.png", width = 4, height = 4)
 ggsave("example-starwars-wide.png", width = 6, height = 4)
 ```
 
-### Plot 1: \_\_\_\_\_\_\_\_\_
+### Plot 1: Preliminary data visualisation
+
+``` r
+ggplot(data = true_lobsters, mapping = aes(x = `NAMED INDIVIDUAL`)) +
+  geom_bar() +
+theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+<img src="memo_files/figure-gfm/prelim_vis_testing-1.png" alt="Bar plot of lobster traps collected on Hart Island that shows the number of traps belonging to each individual. The plot tells us that Brian York had the most traps, over 80"  />
+
+### Plot 2: Test plot of trap ages
 
 ``` r
 ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
   geom_bar() +
-  labs(x = "Age of Traps (Years)", y = "Number of Traps",
-  title = "Age of Traps Collected on Hart Island") +
-  theme_linedraw() +
-  scale_x_reverse(breaks = seq(10, 0, by = -1))
-```
-
-![](memo_files/figure-gfm/traps_ages_1-1.png)<!-- -->
-
-``` r
-ggsave("hart-traps-ages.png", width = 4, height = 4)
-```
-
-``` r
-ggplot(data = true_lobsters, mapping = aes(x = `# TAGS IN BUNDLE`)) +
-  geom_bar() +
-  labs(x = "Age of Traps (Years)", y = "Number of Traps",
+  labs(x = "Age of Traps (Number of Tags in Bundle)", y = "Number of Traps",
   title = "Age of Traps Collected on Hart Island") +
   theme_linedraw() +
   scale_x_continuous(breaks = seq(0, 10, by = 1))
 ```
 
-![](memo_files/figure-gfm/2_age_graph-1.png)<!-- -->
+<img src="memo_files/figure-gfm/age_graph-1.png" alt="Bar plot showing the ages of lobster traps collected on Hart Island, displaying the amount of traps at each age. 1 year of age has the highest amount, with trap count decreasing as age increases, showing that fewer traps survive as time passes"  />
+
+### Plot 3: Trap IDs Found on Hart Island
+
+#### Data cleanup steps specific to plot 3
+
+This graph is showing the correlation of number of lobster traps to
+individuals and their home ports. We can see the majority of traps found
+came from Port Clyde. While most of the individuals are linked to 30 or
+less traps, one outlier from Port Clyde has closer to 85 lost traps. To
+tidy the data, we arranged the graph in descending order using
+arrange(desc(n)) function, and mutated the N/A variable to read as
+“Unknown” using the mutate() function.
 
 ``` r
-ggsave("hart-traps-ages-2.png", width = 4, height = 4)
+  trap_data <- true_lobsters %>%
+  count(`TAG ID NUMBER`, `HOME PORT`) %>%
+  arrange(desc(n)) %>%
+  mutate(`HOME PORT` = if_else(`HOME PORT` == "N/A", "UNKNOWN", `HOME PORT`))
+
+trap_data$`TAG ID NUMBER` <- fct_reorder(trap_data$`TAG ID NUMBER`, trap_data$n, .desc = TRUE)
 ```
 
-#### Data cleanup steps specific to plot 1
+``` r
+ggplot(data = trap_data, aes(x = `TAG ID NUMBER`, y = n, fill = `HOME PORT`)) +
+  geom_bar(stat = "identity") +
+  labs(x = "Tag ID Number", y = "Number of Traps",
+       title = "Trap IDs Found on Hart Island") +
+  theme_linedraw() +
+  theme(axis.text.x = element_text(angle = 70, hjust = 1)) +
+  scale_fill_viridis_d(option = "H", name = "Home Port", direction = -1)
+```
 
-These data cleaning sections are optional and depend on if you have some
-data cleaning steps specific to a particular plot
+<img src="memo_files/figure-gfm/trap_ids-1.png" alt="Bar plot showing the number of lobster traps belonging to each individual collected on Hart Island. The plot shows that an overwhelming majority belonged to one person, with the ID 9899, having over 80 lost traps"  />
 
 #### Final Plot 1
-
-### Plot 2: \_\_\_\_\_\_\_\_\_
-
-### Plot 3: \_\_\_\_\_\_\_\_\_\_\_
 
 Add more plot sections as needed. Each project should have at least 3
 plots, but talk to me if you have fewer than 3.
