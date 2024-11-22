@@ -159,9 +159,7 @@ leaflet(data = locations) %>%
   addMarkers(lng = -69.266659, lat = 43.90538, popup = "HART ISLAND")
 ```
 
-```{r homeport_maps}
-# Step 1: Summarize trap counts by homeport
-=======
+
 ```{r homeport_maps, fig.alt= "Map with markers showing each of the identified home ports that at least one trap was identified as originating from. Home port markers are coloured by the number of traps that came from them, with blue lines linking each home port to Hart Island, where the traps were collected"}
 
 #Summarise trap counts by homeport
